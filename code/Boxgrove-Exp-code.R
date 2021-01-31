@@ -1,6 +1,9 @@
 ############################## 
 # Add functions
 ##############################
+library(tidyverse)
+library(reshape2)
+
 
 library(dplyr)
 library(tidyr)
@@ -28,18 +31,18 @@ getwd()
 ##############################
 
 # Size/shape data
-plan_filenames_160<-list.files("Handaxes/boxgrove_measurements/plan_822_160", pattern="*.txt")
-profile_filenames_160<-list.files("Handaxes/boxgrove_measurements/profile_822_160", pattern="*.txt")
-plan_filenames_162<-list.files("Handaxes/boxgrove_measurements/plan_2", pattern="*.txt")
-profile_filenames_162<-list.files("Handaxes/boxgrove_measurements/profile_2", pattern="*.txt")
+plan_filenames_160<-list.files("data/Boxgrove/Measurements/plan_scale_160", pattern="*.txt")
+profile_filenames_160<-list.files("data/Boxgrove/Measurements/profile_scale_160", pattern="*.txt")
+plan_filenames_162<-list.files("data/Boxgrove/Measurements/plan_scale_162", pattern="*.txt")
+profile_filenames_162<-list.files("data/Boxgrove/Measurements/profile_scale_162", pattern="*.txt")
 
 # Size/area data
-area_filenames_8_20<-list.files("boxgrove_handaxes/Area/area_8_20", pattern = "*.csv")
-area_filenames_8_21<-list.files("boxgrove_handaxes/Area/area_8_21", pattern = "*.csv")
-area_filenames_8_22<-list.files("boxgrove_handaxes/Area/area_8_22", pattern = "*.csv")
+area_filenames_8_20<-list.files("data/Boxgrove/Measurements/Area/area_8_20", pattern = "*.csv")
+area_filenames_8_21<-list.files("data/Boxgrove/Measurements/Area/area_8_21", pattern = "*.csv")
+area_filenames_8_22<-list.files("data/Boxgrove/Measurements/Area/area_8_22", pattern = "*.csv")
 
 #experimental handaxe data
-experimental_data<-read.csv("experimental_handaxes.csv")
+experimental_data<-read.csv("data/Experiment/experimental_handaxes.csv")
 
 experimental_data<-experimental_data %>%
   rename(individual = knapper) %>%
@@ -59,16 +62,11 @@ open_read<-function(filename, foldername){
   return(open_file)
 }
 
-
 ##############################
 # Merge shape data function
 # Merges size data for shape analysis
 ##############################
-plan_names=plan_filenames_160
-profile_names=profile_filenames_160
-plan_pathway="Handaxes/boxgrove_measurements/plan_822_160"
-profile_pathway="Handaxes/boxgrove_measurements/profile_822_160"
-
+# Merge plans and profiles of silhouette with 160-cm-scale
 merge_shape_data_function_160<-function(plan_names,profile_names,plan_pathway,profile_pathway) {
   
   # combine txt files for each recording set
@@ -99,6 +97,8 @@ merge_shape_data_function_160<-function(plan_names,profile_names,plan_pathway,pr
   return(merged_shape_data)
 }
 
+
+# Merge plans and profiles of silhouette with 162-cm-scale
 merge_shape_data_function_162<-function(plan_names,profile_names,plan_pathway,profile_pathway) {
   
   # combine txt files for each recording set
@@ -132,15 +132,17 @@ merge_shape_data_function_162<-function(plan_names,profile_names,plan_pathway,pr
   return(merged_shape_data)
 }
 
-#Create combined width/thickness data for two different scales (1:160 & 1:162)
 
-boxgrove_measurements_160<-merge_shape_data_function_160(plan_filenames_160,profile_filenames_160,"Handaxes/boxgrove_measurements/plan_822_160","Handaxes/boxgrove_measurements/profile_822_160")
-boxgrove_measurements_162<-merge_shape_data_function_162(plan_filenames_162,profile_filenames_162,"Handaxes/boxgrove_measurements/plan_2","Handaxes/boxgrove_measurements/profile_2")
+#Create combined width/thickness data for two different scales (1:160 & 1:162)
+boxgrove_measurements_160<-merge_shape_data_function_160(plan_filenames_160,profile_filenames_160,"data/Boxgrove/Measurements/plan_scale_160","data/Boxgrove/Measurements/profile_scale_160")
+boxgrove_measurements_162<-merge_shape_data_function_162(plan_filenames_162,profile_filenames_162,"data/Boxgrove/Measurements/plan_scale_162","data/Boxgrove/Measurements/profile_scale_162")
 
 # Merge 1:160 & 1:162 (scales have been corrected in merge_shape_data_function_160 & merge_shape_data_function_162 functions)
-
 boxgrove_measurements<-
   full_join(boxgrove_measurements_160,boxgrove_measurements_162)
+
+# Save the merged data as a csv file
+write.csv(boxgrove_measurements,"data/Boxgrove/Measurements/Herbi_merged.csv", row.names = FALSE)
 
 ##############################
 # Open Read size/area function
