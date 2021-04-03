@@ -3,22 +3,17 @@
 ##############################
 library(tidyverse)
 library(reshape2)
-
-
-library(dplyr)
-library(tidyr)
-library(data.table)
 library(psych)
 library(factoextra)
 library(ggfortify)
+require(FactoMineR)
+library(data.table)
 library(sjmisc)
 library(sjPlot)
-require(FactoMineR)
 require(MASS)
-require(reshape2)
 require(cowplot)
 library(sjstats)
-
+library(pwr)
 ############################## 
 # Set working directory and source files
 ##############################
@@ -31,15 +26,11 @@ getwd()
 ##############################
 
 # Size/shape data
-plan_filenames_160<-list.files("data/Boxgrove/Measurements/plan_scale_160", pattern="*.txt")
-profile_filenames_160<-list.files("data/Boxgrove/Measurements/profile_scale_160", pattern="*.txt")
 plan_filenames_162<-list.files("data/Boxgrove/Measurements/plan_scale_162", pattern="*.txt")
 profile_filenames_162<-list.files("data/Boxgrove/Measurements/profile_scale_162", pattern="*.txt")
 
 # Size/area data
-area_filenames_8_20<-list.files("data/Boxgrove/Measurements/Area/area_8_20", pattern = "*.csv")
-area_filenames_8_21<-list.files("data/Boxgrove/Measurements/Area/area_8_21", pattern = "*.csv")
-area_filenames_8_22<-list.files("data/Boxgrove/Measurements/Area/area_8_22", pattern = "*.csv")
+area_filenames<-list.files("data/Boxgrove/Measurements/Area", pattern = "*.csv")
 
 #experimental handaxe data
 experimental_data<-read.csv("data/Experiment/experimental_handaxes.csv")
@@ -66,38 +57,6 @@ open_read<-function(filename, foldername){
 # Merge shape data function
 # Merges size data for shape analysis
 ##############################
-# Merge plans and profiles of silhouette with 160-cm-scale
-merge_shape_data_function_160<-function(plan_names,profile_names,plan_pathway,profile_pathway) {
-  
-  # combine txt files for each recording set
-  handaxe_plan_measurements<-do.call(rbind,lapply(plan_names,open_read,plan_pathway))
-  handaxe_profile_measurements<-do.call(rbind,lapply(profile_names,open_read,profile_pathway))
-  
-  # clean and reshape plan data 
-  handaxe_plan_measurements_reshape<-handaxe_plan_measurements %>%
-    mutate(variable=recode(handaxe_plan_measurements$variable, Width = "width"),
-           measurement_point = paste(variable, measurement_point, sep="_"),
-           shape_width_mm=measurement*25.4) %>%
-    dplyr::select(-c(variable,measurement)) %>%
-    dcast(individual ~ measurement_point,value.var="shape_width_mm")
-  
-  # clean and reshape profile data 
-  handaxe_profile_measurements_reshape<-handaxe_profile_measurements %>%
-    mutate(variable=dplyr::recode(variable, Width = "thickness"),
-           measurement_point = paste(variable, measurement_point, sep="_"),
-           shape_thickness_mm=measurement*25.4) %>%
-    select(-c(variable,measurement)) %>%
-    dcast(individual ~ measurement_point,value.var="shape_thickness_mm")
-  
-  # create merged shape data
-  merged_shape_data<-handaxe_plan_measurements_reshape %>% 
-    full_join(handaxe_profile_measurements_reshape,by=c("individual")) %>%
-    mutate_if(is.character,as.factor)
-  
-  return(merged_shape_data)
-}
-
-
 # Merge plans and profiles of silhouette with 162-cm-scale
 merge_shape_data_function_162<-function(plan_names,profile_names,plan_pathway,profile_pathway) {
   
@@ -109,8 +68,7 @@ merge_shape_data_function_162<-function(plan_names,profile_names,plan_pathway,pr
   handaxe_plan_measurements_reshape<-handaxe_plan_measurements %>%
     mutate(variable=recode(handaxe_plan_measurements$variable, Width = "width"),
            measurement_point = paste(variable, measurement_point, sep="_"),
-           shape_width_mm=measurement*25.4,
-           shape_width_mm=shape_width_mm-(shape_width_mm*0.01477)) %>%
+           shape_width_mm=measurement*25.4) %>%
     select(-c(variable,measurement)) %>%
     dcast(individual ~ measurement_point,value.var="shape_width_mm")
   
@@ -132,17 +90,12 @@ merge_shape_data_function_162<-function(plan_names,profile_names,plan_pathway,pr
   return(merged_shape_data)
 }
 
-
+  
 #Create combined width/thickness data for two different scales (1:160 & 1:162)
-boxgrove_measurements_160<-merge_shape_data_function_160(plan_filenames_160,profile_filenames_160,"data/Boxgrove/Measurements/plan_scale_160","data/Boxgrove/Measurements/profile_scale_160")
 boxgrove_measurements_162<-merge_shape_data_function_162(plan_filenames_162,profile_filenames_162,"data/Boxgrove/Measurements/plan_scale_162","data/Boxgrove/Measurements/profile_scale_162")
 
-# Merge 1:160 & 1:162 (scales have been corrected in merge_shape_data_function_160 & merge_shape_data_function_162 functions)
-boxgrove_measurements<-
-  full_join(boxgrove_measurements_160,boxgrove_measurements_162)
-
 # Save the merged data as a csv file
-write.csv(boxgrove_measurements,"data/Boxgrove/Measurements/Herbi_merged.csv", row.names = FALSE)
+write.csv(boxgrove_measurements_162,"data/Boxgrove/Measurements/Herbi_merged.csv", row.names = FALSE)
 
 ##############################
 # Open Read size/area function
@@ -151,7 +104,7 @@ write.csv(boxgrove_measurements,"data/Boxgrove/Measurements/Herbi_merged.csv", r
 
 open_read_area<-function(filename, foldername){
   open_file_area<-read.csv(paste(foldername,"/",filename,sep=""),header=T)
-  colnames(open_file_area)<-c("area","perimeter","x","y","max_width","max_length","individual")
+  colnames(open_file_area)<-c("individual","area","x","y","max_width","max_length")
   return(open_file_area)
 }
 
@@ -160,78 +113,31 @@ open_read_area<-function(filename, foldername){
 # Merges size and area data
 ##############################
 
-size_area_function_8_20<-function(area_names,area_pathway) {
+size_area_function<-function(area_names,area_pathway) {
   
   # combine csv files,delete extraneous columns
   handaxe_area_measurements<-do.call(rbind,lapply(area_names,open_read_area,area_pathway))
-  col_names_list=c("x","y","max_width")
+  col_names_list=c("area","x","y","max_width")
   handaxe_area_measurements[col_names_list]<-NULL
   
-  handaxe_area_measurements<-handaxe_area_measurements[-(1:60),] 
   
   # restructure dataframe
   handaxe_area_measurements<- handaxe_area_measurements %>%
-    select(individual, perimeter,max_length) %>%
-    mutate(perimeter=perimeter*25.4,   # convert inches squared to mm squared
-           max_length=max_length*25.4,
-           perimeter=perimeter-(perimeter*0.01477),
-           max_length=max_length-(max_length*0.01477),
+    select(individual, max_length) %>%
+    mutate(max_length=max_length*25.4,
            individual=as.factor(individual))
   
   return(handaxe_area_measurements)
 }
 
-size_area_function_8_21<-function(area_names,area_pathway) {
-  
-  # combine csv files,delete extraneous columns
-  handaxe_area_measurements<-do.call(rbind,lapply(area_names,open_read_area,area_pathway))
-  col_names_list=c("x","y","max_width")
-  handaxe_area_measurements[col_names_list]<-NULL
-  
-  handaxe_area_measurements<-handaxe_area_measurements[-(1:76),] 
-  
-  # restructure dataframe
-  handaxe_area_measurements<- handaxe_area_measurements %>%
-    select(individual, perimeter,max_length) %>%
-    mutate(perimeter=perimeter*25.4,   # convert inches squared to mm squared
-           max_length=max_length*25.4,
-           perimeter=perimeter-(perimeter*0.01477),
-           max_length=max_length-(max_length*0.01477),
-           individual=as.factor(individual))
-  
-  return(handaxe_area_measurements)
-}
 
-size_area_function_8_22<-function(area_names,area_pathway) {
-  
-  # combine csv files,delete extraneous columns
-  handaxe_area_measurements<-do.call(rbind,lapply(area_names,open_read_area,area_pathway))
-  col_names_list=c("x","y","max_width")
-  handaxe_area_measurements[col_names_list]<-NULL
-  
-  handaxe_area_measurements<-handaxe_area_measurements[-(1:53),] 
-  
-  # restructure dataframe
-  handaxe_area_measurements<- handaxe_area_measurements %>%
-    select(individual, perimeter,max_length) %>%
-    mutate(perimeter=perimeter*25.4,   # convert inches squared to mm squared
-           max_length=max_length*25.4,
-           individual=as.factor(individual))
-  
-  return(handaxe_area_measurements)
-}
+handaxes<-size_area_function(area_filenames,"data/Boxgrove/Measurements/Area")
 
-handaxes_8_20<-size_area_function_8_20(area_filenames_8_20,"boxgrove_handaxes/Area/area_8_20")
-handaxes_8_21<-size_area_function_8_21(area_filenames_8_21,"boxgrove_handaxes/Area/area_8_21")
-handaxes_8_22<-size_area_function_8_22(area_filenames_8_22,"boxgrove_handaxes/Area/area_8_22")
-
-boxgrove_combined<-full_join(handaxes_8_20,handaxes_8_21)
-boxgrove_combined<-full_join(boxgrove_combined,handaxes_8_22)
 
 # merge boxgrove shape and max_length datasets
 
-boxgrove_complete<- boxgrove_combined %>% 
-  full_join(boxgrove_measurements,by=c("individual")) %>%
+boxgrove_complete<- handaxes %>% 
+  full_join(boxgrove_measurements_162,by=c("individual")) %>%
   mutate_if(is.character,as.factor) %>%
   mutate(assessment=rep("11",times=length(individual)),
          group=rep("boxgrove",times=length(individual))) %>%
@@ -378,34 +284,35 @@ p + stat_ellipse(geom="polygon", aes(fill = group),
   theme_minimal() +
   theme(panel.grid = element_blank(), 
         panel.border = element_rect(fill= "transparent"))
+ggsave("PCA.png", path="figure", width = 20, height = 20, units = "cm")
 
 # Plot PC results by learning stage
 
 boxgrove_experiment_data_shapes$assessment_stage<-factor(boxgrove_experiment_data_shapes$assessment_stage,levels = c("Boxgrove","Expert","Later","Middle","Earlier"))
 
-hist(boxgrove_experiment_data_shapes$pc1)
+hist(boxgrove_experiment_data_shapes$PC1)
 
-pc1_summary<-boxgrove_experiment_data_shapes  %>%
+PC1_summary<-boxgrove_experiment_data_shapes  %>%
   group_by(assessment_stage) %>%
-  summarise(mean=mean(pc1),sd=sd(pc1))
+  summarise(mean=mean(PC1),sd=sd(PC1))
 
-aov_pc1<-aov(pc1~assessment_stage,data=boxgrove_experiment_data_shapes)
-summary(aov_pc1)
-anova_stats(aov_pc1)
+aov_PC1<-aov(PC1~assessment_stage,data=boxgrove_experiment_data_shapes)
+summary(aov_PC1)
+anova_stats(aov_PC1)
 
-TukeyHSD(aov_pc1)
+TukeyHSD(aov_PC1)
 
-pc2_summary<-boxgrove_experiment_data_shapes  %>%
+PC2_summary<-boxgrove_experiment_data_shapes  %>%
   group_by(assessment_stage) %>%
-  summarise(mean=mean(pc2),sd=sd(pc2))
+  summarise(mean=mean(PC2),sd=sd(PC2))
 
-aov_pc2<-aov(pc2~assessment_stage,data=boxgrove_experiment_data_shapes)
-summary(aov_pc2)
-anova_stats(aov_pc2)
+aov_PC2<-aov(PC2~assessment_stage,data=boxgrove_experiment_data_shapes)
+summary(aov_PC2)
+anova_stats(aov_PC2)
 
-TukeyHSD(aov_pc2)
+TukeyHSD(aov_PC2)
 
-ggplot(data = pc1_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
+ggplot(data = PC1_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
   geom_bar(stat="identity")+
   geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width=.2)+
   scale_color_viridis_d()+
@@ -413,8 +320,9 @@ ggplot(data = pc1_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
   scale_x_discrete(name="")+
   scale_y_continuous(name="Average PC 1 score")+
   theme(text = element_text(size=27))
+ggsave("Average PC1 score.png", path="figure",width = 20, height = 20, units = "cm")
 
-ggplot(data = pc2_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
+ggplot(data = PC2_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
   geom_bar(stat="identity")+
   geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width=.2)+
   scale_color_viridis_d()+
@@ -422,3 +330,4 @@ ggplot(data = pc2_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
   scale_x_discrete(name="")+
   scale_y_continuous(name="Average PC 2 score")+
   theme(text = element_text(size=27))
+ggsave("Average PC2 score.png", path="figure",width = 20, height = 20, units = "cm")
