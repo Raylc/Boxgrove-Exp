@@ -26,11 +26,11 @@ getwd()
 ##############################
 
 # Size/shape data
-plan_filenames_162<-list.files("data/Boxgrove_Apel/Measurements/plan_scale_162", pattern="*.txt")
-profile_filenames_162<-list.files("data/Boxgrove_Apel/Measurements/profile_scale_162", pattern="*.txt")
+plan_filenames<-list.files("data/Boxgrove_Iovita/Measurements/plan", pattern="*.txt")
+profile_filenames<-list.files("data/Boxgrove_Iovita/Measurements/profile", pattern="*.txt")
 
 # Size/area data
-area_filenames<-list.files("data/Boxgrove_Apel/Measurements/Area", pattern = "*.csv")
+metric_filenames<-list.files("data/Boxgrove_Iovita/Measurements/metric", pattern = "*.csv")
 
 #experimental handaxe data
 experimental_data<-read.csv("data/Experiment/experimental_handaxes.csv")
@@ -58,7 +58,7 @@ open_read<-function(filename, foldername){
 # Merges size data for shape analysis
 ##############################
 # Merge plans and profiles of silhouette with 162-cm-scale
-merge_shape_data_function_162<-function(plan_names,profile_names,plan_pathway,profile_pathway) {
+merge_shape_data_function<-function(plan_names,profile_names,plan_pathway,profile_pathway) {
   
   # combine txt files for each recording set
   handaxe_plan_measurements<-do.call(rbind,lapply(plan_names,open_read,plan_pathway))
@@ -69,17 +69,15 @@ merge_shape_data_function_162<-function(plan_names,profile_names,plan_pathway,pr
     mutate(variable=recode(handaxe_plan_measurements$variable, Width = "width"),
            measurement_point = paste(variable, measurement_point, sep="_"),
            shape_width_mm=measurement*25.4) %>%
-    select(-c(variable,measurement)) %>%
+    dplyr::select(-c(variable,measurement)) %>%
     dcast(individual ~ measurement_point,value.var="shape_width_mm")
   
   # clean and reshape profile data 
   handaxe_profile_measurements_reshape<-handaxe_profile_measurements %>%
-    mutate(variable=dplyr::recode(variable, Width = "thickness"),
+    mutate(variable=recode(handaxe_profile_measurements$variable, Width = "thickness"),
            measurement_point = paste(variable, measurement_point, sep="_"),
-           shape_thickness_mm=measurement*25.4,
-           shape_thickness_mm=shape_thickness_mm-(shape_thickness_mm*0.01477 # adjusts scale to correct for 1:162 issue
-           )) %>%
-    select(-c(variable,measurement)) %>%
+           shape_thickness_mm=measurement*25.4) %>%
+    dplyr::select(-c(variable,measurement)) %>%
     dcast(individual ~ measurement_point,value.var="shape_thickness_mm")
   
   # create merged shape data
@@ -90,12 +88,12 @@ merge_shape_data_function_162<-function(plan_names,profile_names,plan_pathway,pr
   return(merged_shape_data)
 }
 
-  
+
 #Create combined width/thickness data for two different scales (1:160 & 1:162)
-boxgrove_measurements_162<-merge_shape_data_function_162(plan_filenames_162,profile_filenames_162,"data/Boxgrove_Apel/Measurements/plan_scale_162","data/Boxgrove_Apel/Measurements/profile_scale_162")
+boxgrove_measurements<-merge_shape_data_function(plan_filenames,profile_filenames,"data/Boxgrove_Iovita/Measurements/plan","data/Boxgrove_Iovita/Measurements/profile")
 
 # Save the merged data as a csv file
-write.csv(boxgrove_measurements_162,"data/Boxgrove/Measurements/Herbi_merged.csv", row.names = FALSE)
+write.csv(boxgrove_measurements,"data/Boxgrove_Iovita/Measurements/merged.csv", row.names = FALSE)
 
 ##############################
 # Open Read size/area function
@@ -104,7 +102,7 @@ write.csv(boxgrove_measurements_162,"data/Boxgrove/Measurements/Herbi_merged.csv
 
 open_read_area<-function(filename, foldername){
   open_file_area<-read.csv(paste(foldername,"/",filename,sep=""),header=T)
-  colnames(open_file_area)<-c("individual","area","x","y","max_width","max_length")
+  colnames(open_file_area)<-c("individual","x","y","max_width","max_length")
   return(open_file_area)
 }
 
@@ -117,13 +115,13 @@ size_area_function<-function(area_names,area_pathway) {
   
   # combine csv files,delete extraneous columns
   handaxe_area_measurements<-do.call(rbind,lapply(area_names,open_read_area,area_pathway))
-  col_names_list=c("area","x","y","max_width")
+  col_names_list=c("x","y","max_width")
   handaxe_area_measurements[col_names_list]<-NULL
   
   
   # restructure dataframe
   handaxe_area_measurements<- handaxe_area_measurements %>%
-    select(individual, max_length) %>%
+    dplyr::select(individual, max_length) %>%
     mutate(max_length=max_length*25.4,
            individual=as.factor(individual))
   
@@ -131,13 +129,13 @@ size_area_function<-function(area_names,area_pathway) {
 }
 
 
-handaxes<-size_area_function(area_filenames,"data/Boxgrove/Measurements/Area")
+handaxes<-size_area_function(metric_filenames,"data/Boxgrove_Iovita/Measurements/metric")
 
 
 # merge boxgrove shape and max_length datasets
 
 boxgrove_complete<- handaxes %>% 
-  full_join(boxgrove_measurements_162,by=c("individual")) %>%
+  full_join(boxgrove_measurements,by=c("individual")) %>%
   mutate_if(is.character,as.factor) %>%
   mutate(assessment=rep("11",times=length(individual)),
          group=rep("boxgrove",times=length(individual))) %>%
@@ -284,7 +282,7 @@ p + stat_ellipse(geom="polygon", aes(fill = group),
   theme_minimal() +
   theme(panel.grid = element_blank(), 
         panel.border = element_rect(fill= "transparent"))
-ggsave("PCA.png", path="figure", width = 20, height = 20, units = "cm")
+ggsave("PCA_Iovita.png", path="figure", width = 20, height = 20, units = "cm")
 
 # Plot PC results by learning stage
 
@@ -320,7 +318,7 @@ ggplot(data = PC1_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
   scale_x_discrete(name="")+
   scale_y_continuous(name="Average PC 1 score")+
   theme(text = element_text(size=27))
-ggsave("Average PC1 score.png", path="figure",width = 20, height = 20, units = "cm")
+ggsave("Average PC1 score_Iovita.png", path="figure",width = 20, height = 20, units = "cm")
 
 ggplot(data = PC2_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
   geom_bar(stat="identity")+
@@ -330,4 +328,4 @@ ggplot(data = PC2_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
   scale_x_discrete(name="")+
   scale_y_continuous(name="Average PC 2 score")+
   theme(text = element_text(size=27))
-ggsave("Average PC2 score.png", path="figure",width = 20, height = 20, units = "cm")
+ggsave("Average PC2 score_Iovita.png", path="figure",width = 20, height = 20, units = "cm")
