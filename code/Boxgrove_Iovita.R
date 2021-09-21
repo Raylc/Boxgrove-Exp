@@ -173,6 +173,18 @@ group <- boxgrove_experiment_data_shapes[, 3]
 # Calculate PCA
 
 boxgrove_experiment_pca<-prcomp(boxgrove_experiment_data_shapes[,-c(1:3)], scale. = F)
+boxgrove_experiment_data_shapes1 <- boxgrove_experiment_data_shapes %>% 
+  mutate(group=recode(boxgrove_experiment_data_shapes$group, control = "novice"))
+
+bepca <-subset(boxgrove_experiment_data_shapes, select=-c(assessment,group))
+bepca <-prcomp(boxgrove_experiment_data_shapes[,-c(1:3)],  scale = TRUE)
+bepca1 <-prcomp(boxgrove_experiment_data_shapes[,-c(1:3)],  scale = FALSE)
+
+fviz_pca_ind(bepca1, habillage= boxgrove_experiment_data_shapes1$group, # color by groups
+             addEllipses = TRUE, # Concentration ellipses
+             ellipse.type = "convex",
+             legend.title = "Groups",
+             label="none")
 
 # Compute standard deviation of each principal component
 
@@ -276,9 +288,9 @@ p <-ggplot(data = boxgrove_experiment_data_shapes, aes(x = pc1, y = pc2, color =
 p + stat_ellipse(geom="polygon", aes(fill = group), 
                  alpha = 0.2, 
                  show.legend = FALSE, 
-                 level = 0.80) +
-  xlab("PC 1 (56.65%)") + 
-  ylab("PC 2 (16.20%)") +
+                 level = 0.95) +
+  xlab("PC 1 (59.12%)") + 
+  ylab("PC 2 (18.10%)") +
   theme_minimal() +
   theme(panel.grid = element_blank(), 
         panel.border = element_rect(fill= "transparent"))
