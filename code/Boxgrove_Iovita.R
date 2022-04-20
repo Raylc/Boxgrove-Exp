@@ -14,6 +14,7 @@ require(MASS)
 require(cowplot)
 library(sjstats)
 library(pwr)
+library(patchwork)
 ############################## 
 # Set working directory and source files
 ##############################
@@ -185,6 +186,11 @@ fviz_pca_ind(bepca1, habillage= boxgrove_experiment_data_shapes1$group, # color 
              ellipse.type = "convex",
              legend.title = "Groups",
              label="none")
+ggsave("General PCA1.png", path="figure", dpi = 600)
+
+# Cumulative scree plot
+fviz_eig(bepca1, addlabels=TRUE, hjust = -0.1)
+ggsave("Scree plot.png", path="figure", dpi = 600)
 
 # Compute standard deviation of each principal component
 
@@ -194,18 +200,6 @@ std_dev<- boxgrove_experiment_pca$sdev
 
 pr_var <- std_dev^2
 prop_varex <- pr_var/sum(pr_var)
-
-# Scree plot
-
-pc_scree_plot<-plot(prop_varex, xlab = "Principal Component",
-                    ylab = "Proportion of Variance Explained",
-                    type = "b")
-
-# Cumulative scree plot
-
-pc_cumulative_plot<-plot(cumsum(prop_varex), xlab = "Principal Component",
-                         ylab = "Cumulative Proportion of Variance Explained",
-                         type = "b")
 
 # Graph of variables
 
@@ -229,6 +223,10 @@ eig.val <- get_eigenvalue(boxgrove_experiment_pca)
 
 res.var <- get_pca_var(boxgrove_experiment_pca)
 variable_loadings<-data.frame(res.var$coord)         # Coordinates
+variable_loadings_pc12 <- subset(variable_loadings, select=c("Dim.1", "Dim.2"))
+write.csv(variable_loadings_pc12,"data\\variable_loadings_pc12.csv", row.names = TRUE)
+
+
 
 # Results for individuals
 
@@ -240,27 +238,41 @@ Indiv_handaxe_scores<-data.frame(res.ind$coord)        # Coordinates
 boxgrove_experiment_data_shapes$PC1<-Indiv_handaxe_scores$Dim.1
 boxgrove_experiment_data_shapes$PC2<-Indiv_handaxe_scores$Dim.2
 
+# plotting the pc1 and pc2 by assessment stage
+boxgrove_experiment_data_shapes2 <- boxgrove_experiment_data_shapes%>%
+  filter(assessment != "10" & assessment != "11")
+
+ggplot(data = boxgrove_experiment_data_shapes2) +
+  aes(x = as.numeric(assessment), y = PC1) +
+  geom_point()+
+  geom_smooth()
+
+ggplot(data = boxgrove_experiment_data_shapes2) +
+  aes(x = as.numeric(assessment), y = PC2) +
+  geom_point()+
+  geom_smooth()
+
+
 # plot pc 1,2 by group
 
 boxgrove_experiment_data_scaled<-boxgrove_experiment_data_scaled %>%
-  mutate(assessment_stage=ifelse(assessment %in% c("1","2","3"),"Earlier",
-                                 ifelse(assessment %in% c("4","5","6"),"Middle",
-                                        ifelse(assessment %in% c("7","8","9"),"Later",
+  mutate(assessment_stage=ifelse(assessment %in% c("1"),"Pre-training",
+                                 ifelse(assessment %in% c("2","3","4","5"),"Early training",
+                                        ifelse(assessment %in% c("6","7","8","9"),"Late training",
                                                ifelse(assessment == "10","Expert","Boxgrove")))))
 
 # Using PCA method and ggplot
 
 pca1 <- PCA(boxgrove_experiment_data_shapes[,-c(1:3)], 
             quali.sup = c(8:10), graph = FALSE)
-plot.PCA(pca1)
 
 boxgrove_experiment_data_shapes$pc1 <- pca1$ind$coord[, 1] # indexing the first column
 boxgrove_experiment_data_shapes$pc2 <- pca1$ind$coord[, 2]  # indexing the second column
 
 boxgrove_experiment_data_shapes<-boxgrove_experiment_data_shapes %>%
-  mutate(assessment_stage=ifelse(assessment %in% c("1","2","3"),"Earlier",
-                                 ifelse(assessment %in% c("4","5","6"),"Middle",
-                                        ifelse(assessment %in% c("7","8","9"),"Later",
+  mutate(assessment_stage=ifelse(assessment %in% c("1"),"Pre-training",
+                                 ifelse(assessment %in% c("2","3","4","5"),"Early training",
+                                        ifelse(assessment %in% c("6","7","8","9"),"Late training",
                                                ifelse(assessment == "10","Expert","Boxgrove")))),
          group=recode(boxgrove_experiment_data_shapes$group, control = "novice"))
 
@@ -278,27 +290,9 @@ circleFun <- function(center = c(0,0),diameter = 1, npoints = 100){
 
 circ <- circleFun(c(0,0),2,npoints = 500)
 
-p <-ggplot(data = boxgrove_experiment_data_shapes, aes(x = pc1, y = pc2, color = group, shape = group)) +
-  geom_hline(yintercept = 0, lty = 2) +
-  geom_vline(xintercept = 0, lty = 2) +
-  guides(color = guide_legend(title = "group"), shape = guide_legend(title = "group")) +
-  scale_shape_manual(values = c(15, 16, 17, 16)) +
-  geom_point(alpha = 0.8, size = 2) 
-
-p + stat_ellipse(geom="polygon", aes(fill = group), 
-                 alpha = 0.2, 
-                 show.legend = FALSE, 
-                 level = 0.95) +
-  xlab("PC 1 (59.12%)") + 
-  ylab("PC 2 (18.10%)") +
-  theme_minimal() +
-  theme(panel.grid = element_blank(), 
-        panel.border = element_rect(fill= "transparent"))
-ggsave("PCA_Iovita.png", path="figure", width = 20, height = 20, units = "cm")
-
 # Plot PC results by learning stage
 
-boxgrove_experiment_data_shapes$assessment_stage<-factor(boxgrove_experiment_data_shapes$assessment_stage,levels = c("Boxgrove","Expert","Later","Middle","Earlier"))
+boxgrove_experiment_data_shapes$assessment_stage<-factor(boxgrove_experiment_data_shapes$assessment_stage,levels = c("Boxgrove","Expert","Late training","Early training","Pre-training"))
 
 hist(boxgrove_experiment_data_shapes$PC1)
 
@@ -330,7 +324,7 @@ ggplot(data = PC1_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
   scale_x_discrete(name="")+
   scale_y_continuous(name="Average PC 1 score")+
   theme(text = element_text(size=27))
-ggsave("Average PC1 score_Iovita.png", path="figure",width = 20, height = 20, units = "cm")
+ggsave("PC1 score_New.png", path="figure", dpi = 600)
 
 ggplot(data = PC2_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
   geom_bar(stat="identity")+
@@ -340,4 +334,24 @@ ggplot(data = PC2_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
   scale_x_discrete(name="")+
   scale_y_continuous(name="Average PC 2 score")+
   theme(text = element_text(size=27))
-ggsave("Average PC2 score_Iovita.png", path="figure",width = 20, height = 20, units = "cm")
+ggsave("PC2 score_New.png", path="figure", dpi = 600)
+
+
+ggstatsplot::ggbetweenstats(
+  data  = boxgrove_experiment_data_shapes,
+  x     = assessment_stage,
+  y     = PC1,
+  ggsignif.args = list(textsize = 1.5, tip_length = 0.01),
+  title = "A between-group comparison of PC1 values"
+)
+ggplot2::ggsave("PC1 comparison.png", path="figure", dpi = 600)
+
+ggstatsplot::ggbetweenstats(
+  data  = boxgrove_experiment_data_shapes,
+  x     = assessment_stage,
+  y     = PC2,
+  ggsignif.args = list(textsize = 1.5, tip_length = 0.01),
+  title = "A between-group comparison of PC2 values"
+)
+ggplot2::ggsave("PC2 comparison.png", path="figure", dpi = 600)
+

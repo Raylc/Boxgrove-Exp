@@ -1,0 +1,113 @@
+---
+title: "Detecting skill level and mental template in biface morphology: Archaeological and experimental insights"
+author: 
+- Cheng Liu^[Department of Anthropology, Emory University, Atlanta, GA, USA; raylc1996@outlook.com]
+- Radu Iovita^[Department of Anthropology, New York University, New York, NY, USA; Department of Early Prehistory and Quaternary Ecology, Eberhard Karls University of Tübingen, Tübingen, Germany; iovita@nyu.edu]
+- Dietrich Stout^[Department of Anthropology, Emory University, Atlanta, GA, USA; dwstout@emory.edu]
+- Justin Pargeter^[Department of Anthropology, New York University, New York, NY, USA; Palaeo-Research Institute, University of Johannesburg, Auckland Park, South Africa; justin.pargeter@nyu.edu]
+abstract: "Stone tools provide key evidence of human cognitive evolution but remain challenging to interpret. \\par \\textbf{Keywords:} Late Acheulean; Biface production; Boxgrove; Experimental archaeology; Skill level; Mental template"
+fontsize: 11pt
+output: bookdown::pdf_document2
+header-includes:
+   - \usepackage{textcomp}
+   - \usepackage{utopia}
+   - \usepackage{lineno}
+   - \linenumbers
+   - \usepackage{float}
+   - \floatplacement{figure}{H}
+   - \usepackage{caption}
+   - \captionsetup[figure]{font=scriptsize}
+   - \captionsetup[table]{font=scriptsize}
+linestretch: 1.5
+link-citations: yes
+linkcolor: blue
+bibliography: bibliography.bib
+csl: apa.csl
+---
+
+# Introduction
+
+Stone tools
+
+# Materials and Methods
+
+## Boxgrove biface collection
+
+To Radu: I cannot find any context information of this sample from your 2011 JHE paper [@iovita2011]. Could you please write something here?
+
+## Experimental biface collection
+
+The biface experimental replicas used in this study comprised two sub-collection. The first sub-collection includes 10 bifaces knapped by three expert knappers, including Bruce Bradley (n=4), John Lord (n=3), and Dietrich Stout (n=3) [@stout2014]. The second sub-collection is produced from a 90-hour handaxe knapping skill acquisition experiment [@pargeter2019; @pargeter2020], where 30 adults with no previous experience in knapping were recruited from Emory University and its surrounding communities and requested to make 132 bifaces in total. Among these 30 adult participants, 17 have gone through multiple one-to-one or group training sessions that amounted to 89 hours in maximum, while the remaining 13 were assigned to the controlled group, where no formal training is given.
+
+In this experiment, all research participants participated in the initial assessment (assessment 1 in our data set) before formal training, where they each produced a handaxe after watching three 15-minute videos of Late Acheulean style handaxes demonstrated by expert knappers and examining four Late Acheulean style handaxe replicas. Subsequently, the 17 participants in the experimental group were assessed after every ten hours of the cumulative learning period, where each of them was requested to produce a handaxe for expert knapper's review, leading to the compilation of a data set composing 9 assessements in total. It should be also noted that 6 out of 17 participants dropped out of the research before the final assessment due to personal reasons. To detect the effect of training on skill level and mental template, we reorganized our assessment classification scheme and combined it into three broader categories, namely pre-training (assessment 1), early training (assessment 2-5), and late training (assessment 6-9), which helps increase the sample size of the measured intervals. A more detailed experimental protocol can be assessed in one of our published papers [@pargeter2019].
+
+## Lithic Analysis
+
+To better understand the morphological variation of Boxgrove biface collection, we adopted a standardized analytical procedure to extract the morphometric information from 752 photos of the studied samples prepared by R. I. [@iovita2011], which include both the front and lateral views of a given specimen. First, we used Adobe Photoshop to conduct a batch transformation of the samples' pixel scale into a real-world measurement scale based on the fixed photographic setting. This is then followed by the batch conversion of color photographs to a black-and-white binary format. Subsequently, we cropped the silhouettes of bifaces one by one using the Quick Selection Tool in Adobe Photoshop. The metric measurements were conducted in ImageJ [@rueden2017], where we employed a custom script [@pargeter2019] to measure the maximum length, width, and thickness of a given silhouette. The width and thickness measurements are taken at 10% increments of length starting at the tip of each biface (**Figure** \@ref(fig:ImageJ)), which eventually leads to 19 morphometric variables in total (1 length measurement, 9 width measurements, and 9 thickness measurements). Finally, we calculated the geometric means of all 19 linear measurements to create a scale-free data set that preserves the individual morphological variation at the same time [@lycett2006]. The same procedure was also applied to the morphometric analyses of the experimental biface collection, which was partially published in Pargeter et al. [-@pargeter2019].
+
+```{r ImageJ, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="A visual demonstration of the biface measurement protocal using Image J (after Pargeter et al. 2019: Figure 5)."}
+knitr::include_graphics(here::here("figure/Fig1.png"))
+```
+
+## Statistical Analyses
+
+Given the number of variables involved in this study, we used the principal component analysis (PCA) to reduce the dimension and identify the possible patterns in this morphometric data set, which is one of the most commonly used techniques in similar studies [@iovita2011; @shipton2015; @stout2014; @garcía-medrano2020]. To detect the effect of training on novices' performance as compared with archaeological samples and biface made by experts, we also compare the corresponding metrics built on PCA across different training periods and across all groups using the Games-Howell nonparametric post-hoc test, which does not rely on the assumptions of equal sample sizes and equal variance. This study adheres to the principles of reproducibility and data transparency of archaeological research by depositing all the codes and data sets involved in an open-access online repository [@marwick2017], which can be accessed through the author's Github ([\<https://github.com/Raylc/PaST-pilot\>](https://github.com/Raylc/PaST-pilot){.uri}).
+
+# Results
+
+## Principal Component analysis
+
+Our analysis suggested that the first two components already explain 77.2% of the variation for the entire morphometric data set composed of 19 variables (**Figure** \@ref(fig:Screeplot)), which is a rather decent explained variance ratio to avoid overfitting. We then decided to focus on and further interpreted the implications of these first two components based on their relationships between variables (**Table** \@ref(tab:tab1)). The first principle component (PC1) indicates the overall biface thickness as it is positively correlated with all thickness measurements while negatively correlated with all other measurements. That being said, a higher PC1 value indicates a thicker biface, and vice versa. The second principle component (PC2) tracks the elongation and pointedness based on its positive relationship with maximum length and bottom width/thickness. As PC2 increases, a biface will be generally longer and more pointed since its bottom part will be bulkier.
+
+```{r Screeplot, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="A scree plot showing the percentage of explained variances of the first 10 principle components."}
+knitr::include_graphics(here::here("figure/Scree plot.png"))
+```
+
+```{r tab1, echo=FALSE, message=FALSE}
+library(tidyverse)
+df1<-read.csv(here::here("data/variable_loadings_pc12.csv"), fileEncoding = 'UTF-8-BOM')
+kableExtra::kbl(df1, booktabs = T, caption = "Variable loadings for the first two principle components") %>%
+  kableExtra::kable_styling(position = "left", full_width = TRUE, latex_options = c("striped", "HOLD_position"), font_size = 8)%>%
+kableExtra::row_spec(0, bold = T)
+
+```
+
+A closer look at the principal component scatter plot (**Figure** \@ref(fig:GeneralPCA1)) yields the clustering of different groups of bifaces. The majority of Boxgrove bifaces occupy an area featuring negative values of both PC1 and PC2. The expert group is similar to the Boxgrove group in PC1, while the former has a relatively higher PC2 value than the latter on average. The group of novice displays the highest level of variability, however, it is rather pronounced that most bifaces made by novices have a positive PC1 value that is different from both the groups of Boxgrove and experts.
+
+```{r GeneralPCA1, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="A principal component scatter plot of bifaces from the groups of Boxgrove (red, n=326), expert (green, n=10), and novice (blue, n=132)."}
+knitr::include_graphics(here::here("figure/General PCA1.png"))
+```
+
+## Effects of training
+
+We extracted the PC1 and PC2 values of individual bifaces and compared them between different groups. More specifically, the novice group was divided into three sub-groups based on their training stages as specified in the method section. As such, we found that for PC1 values (**Figure** \@ref(fig:PCA1)), the only two group comparisons that are **not** statistically significant are the one between Boxgrove and Expert and the one between Early training and Late training stages, which at least partially confirms our visual observation of the general PCA scatter plot. Likewise, for PC2 values (**Figure** \@ref(fig:PCA2)), the group comparison between the Early training and Late stages again is **not** statistically significant. However, a rather surprising result here is that the mean PC2 value difference between the Pre-training group and Boxgrove is also **not** statistically significant.
+
+```{r PCA1, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="A between-group comparison of PC1 values."}
+knitr::include_graphics(here::here("figure/PC1 comparison.png"))
+```
+
+```{r PCA2, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="A between-group comparison of PC2 values."}
+knitr::include_graphics(here::here("figure/PC2 comparison.png"))
+```
+
+# Discussion
+
+The most salient finding of our exploratory study is that
+
+# Conclusions
+
+Our exploratory study produced findings with both theoretical and methodological implications.
+
+# CRediT authorship contribution statement
+
+**Cheng Liu**: Data curation, Formal analysis, Investigation, Methodology, Visualization, Writing -- original draft, Writing -- review & editing. **Radu Iovita**: Resources, Writing -- original draft, Writing -- review & editing. **Dietrich Stout**: Conceptualization, Investigation, Resources, Funding acquisition, Supervision, Writing -- original draft, Writing -- review & editing. **Justin Pargeter**: Conceptualization, Investigation, Methodology, Supervision, Writing -- original draft, Writing -- review & editing.
+
+# Declaration of competing interest
+
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+# Acknowledgements
+
+This work was supported by funding from the National Science Foundation of the USA (grants SMA-1328567 & DRL-1631563), the John Templeton Foundation (grant 47994), and the Emory University Research Council. The handaxe knapping skill acquisition experiment involved in this study was approved by Emory University's Internal Review Board (IRB study no: 00067237).
+
+# References
