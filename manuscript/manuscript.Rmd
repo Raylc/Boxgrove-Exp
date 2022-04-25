@@ -39,7 +39,7 @@ Here we have two interconnected research questions based on a reference sample g
 
 ## Boxgrove biface collection
 
-To Radu: I cannot find any context information of this sample from your 2011 JHE paper [@iovita2011]. Could you please write something here?
+The archaeological site of Boxgrove is located in the former Eartham quarry, Boxgrove, West Sussex, featuring a long sequence of Middle Pleistocene deposit [@roberts1998; @pope2020]. This 500-ka-old site has documented exceedingly rich details of Lower Paleolithic hominins' subsistence behaviors [@smith2012; @smith2013] and their paleoenvironmental contexts [@holmes2010]. In addition to the presence of one of the earliest hominin fossil [*Homo heidelbergensis*, @hillson2010] and bone assemblages with anthropogenic modifications in northern Europe [@bello2009], Boxgrove is mostly known for its large sample size of Late Acheulean-style flint handaxes and the high knapping skill level reflected in this manufacture of these handaxes. As such, it has received wide research attention in the past two decades regarding the relationships between technology, cognition, and skills [@stout2014; @iovita2011; @iovita2017; @shipton2015; @garcía-medrano2019]. To identify the morphological manifestation of knappers' dexterity in our study, we selected a complete handaxe assemblage (n=326) previously analyzed and reported in digital formats by Iovita and McPherron [@iovita2011], which is currently curated at the Franks House of the British Museum [@iovita2017].
 
 ## Experimental biface collection
 
@@ -57,7 +57,7 @@ knitr::include_graphics(here::here("figure/Fig1.png"))
 
 ## Statistical analyses
 
-Given the number of variables involved in this study, we used the principal component analysis (PCA) to reduce the dimension and identify the possible patterns in this morphometric data set, which is one of the most commonly used techniques in similar studies [@iovita2011; @shipton2015; @stout2014; @garcía-medrano2020]. To detect the effect of training on novices' performance as compared with archaeological samples and biface made by experts, we also compare the corresponding metrics built on PCA across different training periods and across all groups using the Games-Howell nonparametric post-hoc test, which does not rely on the assumptions of equal sample sizes and equal variance. This study adheres to the principles of reproducibility and data transparency of archaeological research by depositing all the codes and data sets involved in an open-access online repository [@marwick2017], which can be accessed through the author's Github ([\<https://github.com/Raylc/PaST-pilot\>](https://github.com/Raylc/PaST-pilot){.uri}).
+Given the number of variables involved in this study, we used the principal component analysis (PCA) to reduce the dimension and identify the possible patterns in this morphometric data set, which is one of the most commonly used techniques in similar studies [@iovita2011; @shipton2015; @stout2014; @garcía-medrano2020a; @garcía-medrano2020b]. To detect the effect of training on novices' performance as compared with archaeological samples and biface made by experts, we also compare the corresponding metrics built on PCA across different training periods and across all groups using the Games-Howell nonparametric post-hoc test, which does not rely on the assumptions of equal sample sizes and equal variance. This study adheres to the principles of reproducibility and data transparency of archaeological research by depositing all the codes and data sets involved in an open-access online repository [@marwick2017], which can be accessed through the author's Github (<https://github.com/Raylc/PaST-pilot>).
 
 # Results
 
@@ -105,6 +105,8 @@ Training is important in terms of its immediate effects (pre-training vs. post-t
 The pre-training group is similar to the Boxgrove group in PC2 because of the raw material restriction in experimental set up, which is typically flat flakes? Novice before training cannot effectively reduce the nodule to a pointed shape, making their products assembling Boxgrove in this dimension.
 
 Experimental archaeology has a huge potential in similar topics.
+
+Maybe also something about how this study demonstrate the potential of archaeological data reuse and its contempoary relevance [information age+pandemic+ethical research]?
 
 # Conclusions
 
