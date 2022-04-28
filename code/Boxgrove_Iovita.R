@@ -355,3 +355,34 @@ ggstatsplot::ggbetweenstats(
 )
 ggplot2::ggsave("PC2 comparison.png", path="figure", dpi = 600)
 
+
+
+data1 <- read.csv("data/Experiment/GM worksheet.csv")
+data2 <- read.csv("data/Experiment/Core Weights.csv")
+total <- inner_join(data1, data2, by="Starting_Weight")
+total <- total %>%
+  mutate(delta_Weight= Starting_Weight-Weight)
+total_grouped <-total %>%
+  mutate(assessment_stage=ifelse(assessment %in% c("1"),"Pre-training",
+                                 ifelse(assessment %in% c("2","3","4","5"),"Early training",
+                                        ifelse(assessment %in% c("6","7","8","9"),"Late training", "NA"))))
+total_grouped$assessment_stage <- relevel(total_grouped$assessment_stage, 'Late training')
+
+p <- ggstatsplot::ggbetweenstats(
+  data  = total_grouped,
+  x     = assessment_stage,
+  y     = delta_Weight,
+  ggsignif.args = list(textsize = 1.5, tip_length = 0.01),
+  ggplot.component = list(scale_x_discrete(limits=c("Late training", "Early training", "Pre-training"))),
+  title = "A between-group comparison of delta weight"
+)
+ggplot2::ggsave("delta weight comparison1.png", path="figure", dpi = 600)
+
+ggstatsplot::extract_stats(p)
+
+
+aov_dw<-aov(delta_Weight~assessment_stage,data=total_grouped)
+summary(aov_dw)
+anova_stats(aov_dw)
+
+TukeyHSD(aov_dw)
