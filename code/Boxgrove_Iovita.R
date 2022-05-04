@@ -357,16 +357,38 @@ ggplot2::ggsave("PC2 comparison.png", path="figure", dpi = 600)
 
 
 
-data1 <- read.csv("data/Experiment/GM worksheet.csv")
-data2 <- read.csv("data/Experiment/Core Weights.csv")
-total <- inner_join(data1, data2, by="Starting_Weight")
+data1 <- read.csv("data/Experiment/handaxe_end_weights.csv")
+data2 <- read.csv("data/Experiment/handaxe_start_weights.csv")
+total <- inner_join(data1, data2, by="Core.Number")
 total <- total %>%
-  mutate(delta_Weight= Starting_Weight-Weight)
-total_grouped <-total %>%
-  mutate(assessment_stage=ifelse(assessment %in% c("1"),"Pre-training",
-                                 ifelse(assessment %in% c("2","3","4","5"),"Early training",
-                                        ifelse(assessment %in% c("6","7","8","9"),"Late training", "NA"))))
-total_grouped$assessment_stage <- relevel(total_grouped$assessment_stage, 'Late training')
+  mutate(delta_Weight= Start_Weight-End_Weight)
+total <- subset(total, select = -c(Experiment, experiment) )
+data3 <- read.csv("data/Experiment/Experiment_Core_Weight_Control_Expert.csv")
+data3 <- data3 %>%
+  mutate(delta_Weight= Start_Weight-End_Weight)
+total1 <- rbind(total, data3)
+# Core P4:A1, P12:A1, P14:A3, P20:1, P20:2 are removed because they don't
+# have shape data due to breakage. P means participant, A means assessment
+total2 <- total1[-c(23, 69, 75, 114, 115), ]
+
+
+total_grouped <-total2 %>%
+  mutate(Assessment_stage=ifelse(Assessment %in% c("1"),"Pre-training",
+                                 ifelse(Assessment %in% c("2","3","4","5"),"Early training",
+                                        ifelse(Assessment %in% c("6","7","8","9"),"Late training", 
+                                          ifelse(Assessment == "10","Expert","Boxgrove")))))
+write.csv(total_grouped,"data/Experiment/Weight data.csv", row.names = FALSE)
+
+
+p <- ggstatsplot::ggbetweenstats(
+  data  = total_grouped,
+  x     = Assessment_stage,
+  y     = delta_Weight,
+  ggsignif.args = list(textsize = 1.5, tip_length = 0.01),
+  title = "A between-group comparison of delta weight")
+ggplot2::ggsave("delta weight comparison3.png", path="figure", dpi = 600)
+
+ggstatsplot::extract_stats(p)
 
 p <- ggstatsplot::ggbetweenstats(
   data  = total_grouped,
@@ -376,9 +398,7 @@ p <- ggstatsplot::ggbetweenstats(
   ggplot.component = list(scale_x_discrete(limits=c("Late training", "Early training", "Pre-training"))),
   title = "A between-group comparison of delta weight"
 )
-ggplot2::ggsave("delta weight comparison1.png", path="figure", dpi = 600)
-
-ggstatsplot::extract_stats(p)
+ggplot2::ggsave("delta weight comparison2.png", path="figure", dpi = 600)
 
 
 aov_dw<-aov(delta_Weight~assessment_stage,data=total_grouped)
