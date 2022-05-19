@@ -1,0 +1,9 @@
+Width_0.1_8.72
+Width_0.2_10.48
+Width_0.3_11.56
+Width_0.4_11.76
+Width_0.5_11.82
+Width_0.6_11.4
+Width_0.7_8.62
+Width_0.8_6
+Width_0.9_4.4

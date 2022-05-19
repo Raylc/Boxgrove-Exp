@@ -2,6 +2,7 @@
 title: "Detecting skill level and mental template in biface morphology: Archaeological and experimental insights"
 author: 
 - Cheng Liu^[Department of Anthropology, Emory University, Atlanta, GA, USA; raylc1996@outlook.com]
+- Nada Khreisheh^[The Ancient Technology Centre, Cranborne, Dorset, UK; nada.khreisheh@dorsetcouncil.gov.uk]
 - Radu Iovita^[Department of Anthropology, New York University, New York, NY, USA; Department of Early Prehistory and Quaternary Ecology, Eberhard Karls University of Tübingen, Tübingen, Germany; iovita@nyu.edu]
 - Dietrich Stout^[Department of Anthropology, Emory University, Atlanta, GA, USA; dwstout@emory.edu]
 - Justin Pargeter^[Department of Anthropology, New York University, New York, NY, USA; Palaeo-Research Institute, University of Johannesburg, Auckland Park, South Africa; justin.pargeter@nyu.edu]
@@ -102,7 +103,15 @@ PC1 (thickness) is a robust indicator of skill level as it is shared by modern e
 
 Training is important in terms of its immediate effects (pre-training vs. post-training) in both skill level and mental template, however, 90 hours of training is still not enough for novice to reach the reach the skill level as reflected in expert knappers or Late Acheulean toolmaker.
 
-The pre-training group is similar to the Boxgrove group in PC2 because of the raw material restriction in experimental set up, which is typically flat flakes? Novice before training cannot effectively reduce the nodule to a pointed shape, making their products assembling Boxgrove in this dimension.
+The pre-training group is similar to the Boxgrove group in PC2 because these novices lack the ability to effectively reduce the nodules, which are typically flat pre-prepared cortical flakes, to a desired form (**Figure** \@ref(fig:comparison)). That being said, if the given nodules already possess a oval morphology like those presented in the Boxgrove assemblage, it is likely the form of end products knapped by novices in the pre-training group will remain roughly unchanged. This explanation is also supported by the comparison of average delta weight, defined as the difference between the weight of handaxe and the weight of nodule, among four groups, where the pre-training group display the lowest value (**Figure** \@ref(fig:deltaweight)). On the other hand, the refitting analyses of the Boxgrove handaxe assemblage have suggested that the nodules exploited by foragers inhabiting this site are somewhat bulky and amorphous [@roberts1998: 339, 360]. These characteristics have been clearly displayed in a recent attempt of slow motion refitting of a handaxe specimen from Boxgrove GTP17 (<https://www.youtube.com/watch?v=iS58MUJ1ZEo>). As such, behind the resemblance of the pre-training group and the Boxgrove assemblage in PC2 are two types of mechanisms that are fundamentally different from each other, where the latter group exhibits a complex suite of cognitive and motor execution processes to transform the shapeless raw materials to a delicate end product in a given shape.
+
+```{r comparison, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="Core 63 before (left) and after knapping(right), showing the minimal morphological change during the process"}
+knitr::include_graphics(here::here("figure/CAPTURE.PNG"))
+```
+
+```{r deltaweight, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="A comparison of the delta weight between the pre-training, early training, late training, and the expert group."}
+knitr::include_graphics(here::here("figure/delta weight comparison3.png"))
+```
 
 Experimental archaeology has a huge potential in similar topics.
 
@@ -114,7 +123,7 @@ Regarding the two research questions we proposed in the beginning, our case stud
 
 # CRediT authorship contribution statement
 
-**Cheng Liu**: Data curation, Formal analysis, Investigation, Methodology, Visualization, Writing -- original draft, Writing -- review & editing. **Radu Iovita**: Resources, Writing -- original draft, Writing -- review & editing. **Dietrich Stout**: Conceptualization, Investigation, Resources, Funding acquisition, Supervision, Writing -- original draft, Writing -- review & editing. **Justin Pargeter**: Conceptualization, Investigation, Methodology, Supervision, Writing -- original draft, Writing -- review & editing.
+**Cheng Liu**: Data curation, Formal analysis, Investigation, Methodology, Visualization, Writing -- original draft, Writing -- review & editing. **Nada Khreisheh**: Investigation, Writing -- review & editing. **Radu Iovita**: Resources, Writing -- review & editing. **Dietrich Stout**: Conceptualization, Investigation, Resources, Funding acquisition, Supervision, Writing -- original draft, Writing -- review & editing. **Justin Pargeter**: Conceptualization, Investigation, Methodology, Supervision, Writing -- original draft, Writing -- review & editing.
 
 # Declaration of competing interest
 

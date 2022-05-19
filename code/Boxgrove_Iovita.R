@@ -26,14 +26,22 @@ getwd()
 # Add necessary datasets
 ##############################
 
-# Size/shape data
+# Boxgrove Size/shape data
 plan_filenames<-list.files("data/Boxgrove_Iovita/Measurements/plan", pattern="*.txt")
 profile_filenames<-list.files("data/Boxgrove_Iovita/Measurements/profile", pattern="*.txt")
 
-# Size/area data
+# Boxgrove Size/area data
 metric_filenames<-list.files("data/Boxgrove_Iovita/Measurements/metric", pattern = "*.csv")
 
-#experimental handaxe data
+# Experiment nodule Size/shape data
+nodule_plan_filenames<-list.files("data/Experiment/Nodule_Pretraining/Measurements/plan", pattern="*.txt")
+nodule_profile_filenames<-list.files("data/Experiment/Nodule_Pretraining/Measurements/profile", pattern="*.txt")
+
+# Experiment nodule Size/area data
+nodule_metric_filenames<-list.files("data/Experiment/Nodule_Pretraining/Measurements/metric", pattern = "*.csv")
+
+
+# Experimental handaxe data
 experimental_data<-read.csv("data/Experiment/experimental_handaxes.csv")
 
 experimental_data<-experimental_data %>%
@@ -89,12 +97,47 @@ merge_shape_data_function<-function(plan_names,profile_names,plan_pathway,profil
   return(merged_shape_data)
 }
 
+# Merge plans and profiles of pre-training nodules
+merge_shape_data_function1<-function(plan_names,profile_names,plan_pathway,profile_pathway) {
+  
+  # combine txt files for each recording set
+  handaxe_plan_measurements<-do.call(rbind,lapply(plan_names,open_read,plan_pathway))
+  handaxe_profile_measurements<-do.call(rbind,lapply(profile_names,open_read,profile_pathway))
+  
+  # clean and reshape plan data 
+  handaxe_plan_measurements_reshape<-handaxe_plan_measurements %>%
+    mutate(variable=recode(handaxe_plan_measurements$variable, Width = "width"),
+           measurement_point = paste(variable, measurement_point, sep="_"),
+           shape_width_mm=measurement*10) %>%
+    dplyr::select(-c(variable,measurement)) %>%
+    dcast(individual ~ measurement_point,value.var="shape_width_mm")
+  
+  # clean and reshape profile data 
+  handaxe_profile_measurements_reshape<-handaxe_profile_measurements %>%
+    mutate(variable=recode(handaxe_profile_measurements$variable, Width = "thickness"),
+           measurement_point = paste(variable, measurement_point, sep="_"),
+           shape_thickness_mm=measurement*10) %>%
+    dplyr::select(-c(variable,measurement)) %>%
+    dcast(individual ~ measurement_point,value.var="shape_thickness_mm")
+  
+  # create merged shape data
+  merged_shape_data<-handaxe_plan_measurements_reshape %>% 
+    full_join(handaxe_profile_measurements_reshape,by=c("individual")) %>%
+    mutate_if(is.character,as.factor)
+  
+  return(merged_shape_data)
+}
 
-#Create combined width/thickness data for two different scales (1:160 & 1:162)
+
+# Combined width/thickness data for Boxgrove
 boxgrove_measurements<-merge_shape_data_function(plan_filenames,profile_filenames,"data/Boxgrove_Iovita/Measurements/plan","data/Boxgrove_Iovita/Measurements/profile")
+
+# Combined width/thickness data for experimental pre-training nodules
+nodule_measurements<-merge_shape_data_function1(nodule_plan_filenames,nodule_profile_filenames,"data/Experiment/Nodule_Pretraining/Measurements/plan","data/Experiment/Nodule_Pretraining/Measurements/profile")
 
 # Save the merged data as a csv file
 write.csv(boxgrove_measurements,"data/Boxgrove_Iovita/Measurements/merged.csv", row.names = FALSE)
+write.csv(nodule_measurements,"data/Experiment/Nodule_Pretraining/merged.csv", row.names = FALSE)
 
 ##############################
 # Open Read size/area function
@@ -107,6 +150,11 @@ open_read_area<-function(filename, foldername){
   return(open_file_area)
 }
 
+open_read_area1<-function(filename, foldername){
+  open_file_area<-read.csv(paste(foldername,"/",filename,sep=""),header=T)
+  colnames(open_file_area)<-c("individual","area", "preim","x","y","max_width","max_length")
+  return(open_file_area)
+}
 ##############################
 # Size_area function
 # Merges size and area data
@@ -129,9 +177,27 @@ size_area_function<-function(area_names,area_pathway) {
   return(handaxe_area_measurements)
 }
 
+#size/area function for pre-training nodules
+size_area_function1<-function(area_names,area_pathway) {
+  
+  # combine csv files,delete extraneous columns
+  handaxe_area_measurements<-do.call(rbind,lapply(area_names,open_read_area1,area_pathway))
+  col_names_list=c("area", "preim","x","y","max_width")
+  handaxe_area_measurements[col_names_list]<-NULL
+  
+  
+  # restructure dataframe
+  handaxe_area_measurements<- handaxe_area_measurements %>%
+    dplyr::select(individual, max_length) %>%
+    mutate(max_length=max_length*10,
+           individual=as.factor(individual))
+  
+  return(handaxe_area_measurements)
+}
+
 
 handaxes<-size_area_function(metric_filenames,"data/Boxgrove_Iovita/Measurements/metric")
-
+pre_nodule<-size_area_function1(nodule_metric_filenames,"data/Experiment/Nodule_Pretraining/Measurements/metric")
 
 # merge boxgrove shape and max_length datasets
 
@@ -147,10 +213,25 @@ boxgrove_complete<- handaxes %>%
                 thickness_0.9,max_length) %>%
   na.omit()
 
+# merge pre-training nodule shape and max_length datasets
+
+nodule_complete<- pre_nodule %>% 
+  full_join(nodule_measurements,by=c("individual")) %>%
+  mutate_if(is.character,as.factor) %>%
+  mutate(assessment=rep("0",times=length(individual)),
+         group=rep("nodule",times=length(individual))) %>%
+  dplyr::select(individual,assessment,group,width_0.1,width_0.2,width_0.3,width_0.4,
+                width_0.5,width_0.6,width_0.7,width_0.8,width_0.9,
+                thickness_0.1,thickness_0.2,thickness_0.3,thickness_0.4,
+                thickness_0.5,thickness_0.6,thickness_0.7,thickness_0.8,
+                thickness_0.9,max_length) %>%
+  na.omit()
+
 # join boxgrove and experimental
 
 boxgrove_experiment_data<-rbind(boxgrove_complete,experimental_data)
 
+boxgrove_experiment_nodule_data<-rbind(nodule_complete,boxgrove_experiment_data)
 # calculate geomean
 
 boxgrove_experiment_data_scaled<-boxgrove_experiment_data %>%
@@ -159,6 +240,12 @@ boxgrove_experiment_data_scaled<-boxgrove_experiment_data %>%
 boxgrove_experiment_data_scaled[c(4:22)]=boxgrove_experiment_data_scaled[c(4:22)]/boxgrove_experiment_data_scaled$geomean
 boxgrove_experiment_data_scaled$geomean<-NULL
 
+# calculate geomean of the complete data set
+boxgrove_experiment_nodule_data_scaled<-boxgrove_experiment_nodule_data %>%
+  mutate(geomean=apply(boxgrove_experiment_nodule_data[c(4:22)],1,geometric.mean))
+
+boxgrove_experiment_nodule_data_scaled[c(4:22)]=boxgrove_experiment_nodule_data_scaled[c(4:22)]/boxgrove_experiment_nodule_data_scaled$geomean
+boxgrove_experiment_nodule_data_scaled$geomean<-NULL
 ########### PCA
 
 boxgrove_experiment_data_shapes<- boxgrove_experiment_data_scaled[ , which(names(boxgrove_experiment_data_scaled) %in% 
@@ -406,3 +493,4 @@ summary(aov_dw)
 anova_stats(aov_dw)
 
 TukeyHSD(aov_dw)
+
