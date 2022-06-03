@@ -28,9 +28,9 @@ csl: apa.csl
 
 # Introduction
 
-Handaxe is a well-studied and well-published topic, but some aspects of it still remain elusive. More specifically, the sources of variation of handaxe morphology can be very complex, but skill level and mental template are two major factors.
+The morphological variability of Acheulean bifaces has been one of the most well-studied and well-published topics in paleolithic archaeology [@white1998; @earlyhu1998; @key2019]. Despite the recurrent narrative emphasizing the heterogeneity and longevity of biface assemblage on a global scale and the conservatism behind this phenomenon that evokes genetic explanations [@corbey2016; @corbey2020; @richerson2005; @sterelny2004], many researchers have recognized the diversity within what has been deemed as a unified Acheulean "tradition" and tried to dissect the sources and meaning of this variation [@lycett2008; @nowell2010; @nowell2002; @sharon2011]. More specifically, a complex suite of interconnecting factors have been identified to contribute the great variation of biface morphology, encompassing raw materials [@sharon2008; @eren2014; @lycett2016], hammer stone [@shipton2009], function [@machin2007; @key2016; @kohn1999; @white2018; @key2017], reduction method/intensity [@shipton2009; @shipton2015], learning processes [@lycett2016; @kempe2012], skill level [@stout2014; @herzlinger2017; @caruana2021], mental template [@garcía-medrano2019; @hutchence2021], among which skill level and mental template have been repeatedly mentioned and discussed in the now extensive corpus of biface studies.
 
-Skill level: short literature review
+Skill level: short literature review. Symmetry, thinning,
 
 Mental template: short literature review
 
@@ -58,7 +58,7 @@ knitr::include_graphics(here::here("figure/Fig1.png"))
 
 ## Statistical analyses
 
-Given the number of variables involved in this study, we used the principal component analysis (PCA) to reduce the dimension and identify the possible patterns in this morphometric data set, which is one of the most commonly used techniques in similar studies [@iovita2011; @shipton2015; @stout2014; @garcía-medrano2020a; @garcía-medrano2020b]. To detect the effect of training on novices' performance as compared with archaeological samples and biface made by experts, we also compare the corresponding metrics built on PCA across different training periods and across all groups using the Games-Howell nonparametric post-hoc test, which does not rely on the assumptions of equal sample sizes and equal variance. This study adheres to the principles of reproducibility and data transparency of archaeological research by depositing all the codes and data sets involved in an open-access online repository [@marwick2017], which can be accessed through the author's Github (<https://github.com/Raylc/PaST-pilot>).
+Given the number of variables involved in this study, we used the principal component analysis (PCA) to reduce the dimension and identify the possible patterns in this morphometric data set, which is one of the most commonly used techniques in similar studies [@iovita2011; @shipton2015; @stout2014; @garcía-medrano2020a; @garcía-medrano2020b; @herzlinger2017]. To detect the effect of training on novices' performance as compared with archaeological samples and biface made by experts, we also compare the corresponding metrics built on PCA across different training periods and across all groups using the Games-Howell nonparametric post-hoc test, which does not rely on the assumptions of equal sample sizes and equal variance. This study adheres to the principles of reproducibility and data transparency of archaeological research by depositing all the codes and data sets involved in an open-access online repository [@marwick2017], which can be accessed through the author's Github (<https://github.com/Raylc/PaST-pilot>).
 
 # Results
 
