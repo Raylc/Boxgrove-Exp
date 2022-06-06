@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.28)  3 JUN 2022 02:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.28)  6 JUN 2022 02:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -709,37 +709,37 @@ LaTeX Font Info:    Font shape `OMS/put/m/n' in size <6> not available
 (./manuscript.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 3.
-)
+[1
+
+{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
 \tf@toc=\write3
 \openout3 = `manuscript.toc'.
 
-[1
-
-{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-<C:/FilesVC/Boxgrove-Exp/figure/Fig1.png, id=171, 237.7683pt x 214.8828pt>
+[2] [3] [4] [5]
+<C:/FilesVC/Boxgrove-Exp/figure/Fig1.png, id=201, 237.7683pt x 214.8828pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/Fig1.png Graphic file (type png)
 <use C:/FilesVC/Boxgrove-Exp/figure/Fig1.png>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Fig1.png  used on input
  line 179.
 (pdftex.def)             Requested size: 237.77495pt x 214.88881pt.
-[4] [5 <c:/FilesVC/Boxgrove-Exp/figure/Fig1.png>]
-<C:/FilesVC/Boxgrove-Exp/figure/Scree plot.png, id=205, 509.62395pt x 337.9827p
+[6 <c:/FilesVC/Boxgrove-Exp/figure/Fig1.png>]
+<C:/FilesVC/Boxgrove-Exp/figure/Scree plot.png, id=225, 509.62395pt x 337.9827p
 t>
 File: C:/FilesVC/Boxgrove-Exp/figure/Scree plot.png Graphic file (type png)
 <use C:/FilesVC/Boxgrove-Exp/figure/Scree plot.png>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Scree plot.png  used on
  input line 201.
 (pdftex.def)             Requested size: 469.77731pt x 311.5564pt.
-[6 <c:/FilesVC/Boxgrove-Exp/figure/Scree plot.png>]
-<C:/FilesVC/Boxgrove-Exp/figure/General PCA1.png, id=215, 509.62395pt x 337.982
+[7 <c:/FilesVC/Boxgrove-Exp/figure/Scree plot.png>]
+<C:/FilesVC/Boxgrove-Exp/figure/General PCA1.png, id=236, 509.62395pt x 337.982
 7pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/General PCA1.png Graphic file (type png)
 <use C:/FilesVC/Boxgrove-Exp/figure/General PCA1.png>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/General PCA1.png  used 
 on input line 246.
 (pdftex.def)             Requested size: 469.77731pt x 311.5564pt.
-[7]
-<C:/FilesVC/Boxgrove-Exp/figure/PC1 comparison.png, id=224, 509.62395pt x 337.9
+[8]
+<C:/FilesVC/Boxgrove-Exp/figure/PC1 comparison.png, id=244, 509.62395pt x 337.9
 827pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/PC1 comparison.png Graphic file (type png)
 
@@ -747,8 +747,8 @@ File: C:/FilesVC/Boxgrove-Exp/figure/PC1 comparison.png Graphic file (type png)
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/PC1 comparison.png  use
 d on input line 260.
 (pdftex.def)             Requested size: 469.77731pt x 311.5564pt.
-[8 <c:/FilesVC/Boxgrove-Exp/figure/General PCA1.png>]
-<C:/FilesVC/Boxgrove-Exp/figure/PC2 comparison.png, id=233, 509.62395pt x 337.9
+[9 <c:/FilesVC/Boxgrove-Exp/figure/General PCA1.png>]
+<C:/FilesVC/Boxgrove-Exp/figure/PC2 comparison.png, id=253, 509.62395pt x 337.9
 827pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/PC2 comparison.png Graphic file (type png)
 
@@ -756,16 +756,16 @@ File: C:/FilesVC/Boxgrove-Exp/figure/PC2 comparison.png Graphic file (type png)
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/PC2 comparison.png  use
 d on input line 269.
 (pdftex.def)             Requested size: 469.77731pt x 311.5564pt.
-[9 <c:/FilesVC/Boxgrove-Exp/figure/PC1 comparison.png (PNG copy)>] [10 <c:/File
-sVC/Boxgrove-Exp/figure/PC2 comparison.png (PNG copy)>]
-<C:/FilesVC/Boxgrove-Exp/figure/CAPTURE.png, id=250, 895.09406pt x 403.5075pt>
+[10 <c:/FilesVC/Boxgrove-Exp/figure/PC1 comparison.png (PNG copy)>] [11 <c:/Fil
+esVC/Boxgrove-Exp/figure/PC2 comparison.png (PNG copy)>]
+<C:/FilesVC/Boxgrove-Exp/figure/CAPTURE.png, id=270, 895.09406pt x 403.5075pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/CAPTURE.png Graphic file (type png)
 <use C:/FilesVC/Boxgrove-Exp/figure/CAPTURE.png>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/CAPTURE.png  used on in
 put line 287.
 (pdftex.def)             Requested size: 469.76752pt x 211.77072pt.
-[11]
-<C:/FilesVC/Boxgrove-Exp/figure/delta weight comparison3.png, id=258, 509.62395
+[12]
+<C:/FilesVC/Boxgrove-Exp/figure/delta weight comparison3.png, id=278, 509.62395
 pt x 337.9827pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/delta weight comparison3.png Graphic file 
 (type png)
@@ -773,23 +773,23 @@ File: C:/FilesVC/Boxgrove-Exp/figure/delta weight comparison3.png Graphic file
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/delta weight comparison
 3.png  used on input line 296.
 (pdftex.def)             Requested size: 469.77731pt x 311.5564pt.
-[12 <c:/FilesVC/Boxgrove-Exp/figure/Capture.PNG> <c:/FilesVC/Boxgrove-Exp/figur
-e/delta weight comparison3.png (PNG copy)>] [13] [14] [15] [16] [17] [18]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 491.
-[19]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 491.
+[13 <c:/FilesVC/Boxgrove-Exp/figure/Capture.PNG> <c:/FilesVC/Boxgrove-Exp/figur
+e/delta weight comparison3.png (PNG copy)>] [14] [15] [16] [17] [18] [19] [20]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 518.
+[21]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 518.
 (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 491.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 491.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 518.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 518.
  ) 
 Here is how much of TeX's memory you used:
- 16434 strings out of 492162
- 240917 string characters out of 6129062
- 379405 words of memory out of 5000000
+ 16458 strings out of 492162
+ 241181 string characters out of 6129062
+ 380405 words of memory out of 5000000
  20116 multiletter control sequences out of 15000+600000
- 152999 words of font info for 227 fonts, out of 8000000 for 9000
+ 154735 words of font info for 236 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,15n,42p,2639b,546s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,15n,42p,2832b,546s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}{c:/texlive/2019/texm
 f-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/texlive/2019/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmsy6.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfon
@@ -797,10 +797,10 @@ ts/cm/cmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmss8.pfb><c:
 /texlive/2019/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb><c:/texlive/2019/t
 exmf-dist/fonts/type1/adobe/utopia/putr8a.pfb><c:/texlive/2019/texmf-dist/fonts
 /type1/adobe/utopia/putri8a.pfb>
-Output written on manuscript.pdf (19 pages, 6311019 bytes).
+Output written on manuscript.pdf (21 pages, 6318241 bytes).
 PDF statistics:
- 486 PDF objects out of 1000 (max. 8388607)
- 443 compressed objects within 5 object streams
- 112 named destinations out of 1000 (max. 500000)
+ 525 PDF objects out of 1000 (max. 8388607)
+ 480 compressed objects within 5 object streams
+ 123 named destinations out of 1000 (max. 500000)
  20636 words of extra memory for PDF output out of 20736 (max. 10000000)
 

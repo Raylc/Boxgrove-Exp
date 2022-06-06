@@ -1,2 +1,2 @@
 # Boxgrove-Exp
-Identifying skill levels at Boxgrove handaxe assemblage using experimental data
+Detecting skill level and mental template in biface morphology: Archaeological and experimental insights
