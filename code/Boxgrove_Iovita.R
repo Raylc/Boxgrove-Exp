@@ -424,7 +424,7 @@ ggplot(data = PC2_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
 ggsave("PC2 score_New.png", path="figure", dpi = 600)
 
 
-ggstatsplot::ggbetweenstats(
+p1<-ggstatsplot::ggbetweenstats(
   data  = boxgrove_experiment_data_shapes,
   x     = assessment_stage,
   y     = PC1,
@@ -432,8 +432,9 @@ ggstatsplot::ggbetweenstats(
   title = "A between-group comparison of PC1 values"
 )
 ggplot2::ggsave("PC1 comparison.png", path="figure", dpi = 600)
+ggstatsplot::extract_stats(p1)
 
-ggstatsplot::ggbetweenstats(
+p2<-ggstatsplot::ggbetweenstats(
   data  = boxgrove_experiment_data_shapes,
   x     = assessment_stage,
   y     = PC2,
@@ -441,6 +442,7 @@ ggstatsplot::ggbetweenstats(
   title = "A between-group comparison of PC2 values"
 )
 ggplot2::ggsave("PC2 comparison.png", path="figure", dpi = 600)
+ggstatsplot::extract_stats(p2)
 
 
 
