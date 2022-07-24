@@ -15,12 +15,7 @@ require(cowplot)
 library(sjstats)
 library(pwr)
 library(patchwork)
-############################## 
-# Set working directory and source files
-##############################
 
-# Set to source of shape and size data txt files
-getwd()
 
 ############################## 
 # Add necessary datasets
@@ -252,7 +247,6 @@ ggplot(data = boxgrove_experiment_data_shapes2) +
   geom_point()+
   geom_smooth()
 
-
 # plot pc 1,2 by group
 
 boxgrove_experiment_data_scaled<-boxgrove_experiment_data_scaled %>%
@@ -316,25 +310,6 @@ anova_stats(aov_PC2)
 
 TukeyHSD(aov_PC2)
 
-ggplot(data = PC1_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
-  geom_bar(stat="identity")+
-  geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width=.2)+
-  scale_color_viridis_d()+
-  theme(legend.position="none")+
-  scale_x_discrete(name="")+
-  scale_y_continuous(name="Average PC 1 score")+
-  theme(text = element_text(size=27))
-ggsave("PC1 score_New.png", path="figure", dpi = 600)
-
-ggplot(data = PC2_summary,aes(x=assessment_stage,y=mean,fill=assessment_stage))+
-  geom_bar(stat="identity")+
-  geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width=.2)+
-  scale_color_viridis_d()+
-  theme(legend.position="none")+
-  scale_x_discrete(name="")+
-  scale_y_continuous(name="Average PC 2 score")+
-  theme(text = element_text(size=27))
-ggsave("PC2 score_New.png", path="figure", dpi = 600)
 
 
 p1<-ggstatsplot::ggbetweenstats(
@@ -358,45 +333,19 @@ ggplot2::ggsave("PC2 comparison.png", path="figure", dpi = 600)
 ggstatsplot::extract_stats(p2)
 
 
+write.csv(boxgrove_experiment_data_shapes,"data/Experiment/boxgrove_experiment_data_shapes.csv", row.names = FALSE)
 
-
-
-
-
-
-
-
-ggstatsplot::ggscatterstats(
-  data  = boxgrove_experiment_data_shapes,
-  x     = PC1,
-  y     = PC2,
-  xlab  = "PC1",
-  ylab  = "PC2",
-  title = "Correlation between PC1 and PC2"
-)
-ggplot2::ggsave("PC overall correlation.png", path="figure", dpi = 600)
-
+# correlation between PC1 and PC2
 ggstatsplot::grouped_ggscatterstats(
-  data  = dplyr::filter(boxgrove_experiment_data_shapes, assessment_stage %in% c("Boxgrove", "Expert"))
-,
-  x     = PC1,
-  y     = PC2,
-  grouping.var     = assessment_stage,
-  xlab  = "PC1",
-  ylab  = "PC2",
-)
-ggplot2::ggsave("PC boxgrove_expert correlation.png", width = 15, height = 7.5, path="figure", dpi = 600)
-
-ggstatsplot::grouped_ggscatterstats(
-  data  = dplyr::filter(boxgrove_experiment_data_shapes, assessment_stage %in% c("Pre-training", "Early training", "Late training"))
+  data  = dplyr::filter(boxgrove_experiment_data_shapes, group %in% c("boxgrove", "expert", "novice"))
   ,
   x     = PC1,
   y     = PC2,
-  grouping.var     = assessment_stage,
+  grouping.var     = group,
   xlab  = "PC1",
   ylab  = "PC2",
 )
-ggplot2::ggsave("PC novice correlation.png", width = 20, height = 10, path="figure", dpi = 600)
+ggplot2::ggsave("PC correlation.png", width = 20, height = 10, path="figure", dpi = 600)
 
 
 
