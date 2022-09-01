@@ -1,9 +1,9 @@
 # Boxgrove-Exp
 Detecting skill level and mental template in Late Acheulean biface morphology: Archaeological and experimental insights
 
-Pargeter et al., JAMT, Testing the social, cognitive, and motor foundations of Paleolithic skill reproduction (code, data, figure, and manuscript)
 
 ## Getting Started
+Please open the Rproj file instead of the Rcode directly to make sure relative paths work!
 
 ### Dependencies
 The code has been successfully executed on on CL's PC with the following R settings.

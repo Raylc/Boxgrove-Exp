@@ -1,7 +1,7 @@
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {section}{\numberline {2}Materials and methods}{5}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Boxgrove biface collection}{5}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Experimental biface collection}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.1}Boxgrove handaxe collection}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Experimental handaxe collection}{6}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Lithic analysis}{7}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Statistical analyses}{8}{subsection.2.4}%
 \contentsline {section}{\numberline {3}Results}{9}{section.3}%
