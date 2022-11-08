@@ -1,11 +1,39 @@
 # Boxgrove-Exp
-Detecting skill level and mental template in Late Acheulean biface morphology: Archaeological and experimental insights
-
+Dissecting the interaction between skill level and mental template in Late Acheulean biface morphology: Archaeological and experimental insights (code, data, manuscript).
 
 ## Getting Started
 Please open the Rproj file instead of the Rcode directly to make sure relative paths work!
 
-### Dependencies
+## File Structure
+The repository is organised into four main directories: code, data, figure, and manuscript.
+
+### code
+* `Boxgrove_Iovita.R` ... This is the main R script generating the main results of this paper, including the compilation of Boxgrove morphonetric data and the comparative analysis of Boxgrove and experimental data.
+* `Boxgrove-Exp-code.R` ...This is the R script compiling the experimental data sheet.
+
+### data
+* `Boxgrove_Iovita`... This folder includes two subfolder. Subfolder `Sillhouettes` contains sillhouettes of the Boxgrove handaxe assemblage generated through Adobe Photoshop. Subfolder `Measurements` contains morphometric measurements of sillhouettes generated through ImageJ.
+* `Experiment`... This folder includes data of experimental handaxe collections.
+* `Table1.csv`... This csv file is the output file for Table 1 in the manuscript.
+
+### figure
+* `Fig1.png` ... This is Fig.1 in the manuscript.
+* `Fig2.png` ... This is Fig.2 in the manuscript.
+* `Fig3.png` ... This is Fig.3 in the manuscript.
+* `Fig4.png` ... This is Fig.4 in the manuscript.
+* `Fig5.png` ... This is Fig.5 in the manuscript.
+* `Fig6.png` ... This is Fig.6 in the manuscript.
+* `Fig7.png` ... This is Fig.7 in the manuscript.
+* `Fig8.png` ... This is Fig.8 in the manuscript.
+
+
+### manuscript
+* `apa.csl` ... This is the APA citation styleguide.
+* `bibliography.bib` ... This is the reference file.
+* `manuscript.pdf` ... This is the RMarkdown file for the manuscript.
+* `manuscript.Rmd` ... This is the RMarkdown file for the manuscript.
+
+## Dependencies
 The code has been successfully executed on on CL's PC with the following R settings.
 
 * CL's R setting
