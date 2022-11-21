@@ -79,7 +79,7 @@ df1<-read.csv(here::here("data/Table1.csv"), fileEncoding = 'UTF-8-BOM')
 df1<- df1 %>% 
   mutate_if(is.numeric, round, digits = 4) %>% 
   rename(Variables = X)
-kableExtra::kbl(df1, booktabs = T, caption = "Variable loadings for the first two principal components.") %>%
+kableExtra::kbl(df1, booktabs = T, caption = "Variable loadings for the first two principal components. PC1 (Dim.1) is postively correlated with all thickness-related variables and negatively correlated with all width-related variables and the maximum length. PC2 (Dim.2) is positively with bottom width and thickness variables as well as the miximum length and negatively correlated with width and thickness variables of the tip area.") %>%
   kableExtra::kable_styling(position = "left", full_width = TRUE, latex_options = c("striped", "HOLD_position"), font_size = 8)%>%
 kableExtra::row_spec(0, bold = T)
 
