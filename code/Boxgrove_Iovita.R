@@ -317,9 +317,11 @@ p1<-ggstatsplot::ggbetweenstats(
   x     = assessment_stage,
   y     = PC1,
   ggsignif.args = list(textsize = 1.5, tip_length = 0.01),
+  results.subtitle = FALSE,
   title = "A between-group comparison of PC1 values"
 )
-ggplot2::ggsave("PC1 comparison.png", path="figure", dpi = 600)
+ggplot2::ggsave("PC1 comparison.png", path="figure", width = 20,
+                height = 10, units = "cm", dpi = 600)
 ggstatsplot::extract_stats(p1)
 
 p2<-ggstatsplot::ggbetweenstats(
@@ -327,9 +329,11 @@ p2<-ggstatsplot::ggbetweenstats(
   x     = assessment_stage,
   y     = PC2,
   ggsignif.args = list(textsize = 1.5, tip_length = 0.01),
+  results.subtitle = FALSE,
   title = "A between-group comparison of PC2 values"
 )
-ggplot2::ggsave("PC2 comparison.png", path="figure", dpi = 600)
+ggplot2::ggsave("PC2 comparison.png", path="figure", width = 20,
+                height = 10, units = "cm", dpi = 600)
 ggstatsplot::extract_stats(p2)
 
 
@@ -369,7 +373,7 @@ total_grouped <-total2 %>%
                                  ifelse(Assessment %in% c("2","3","4","5"),"Early training",
                                         ifelse(Assessment %in% c("6","7","8","9"),"Late training", 
                                           ifelse(Assessment == "10","Expert","Boxgrove")))))
-write.csv(total_grouped,"data/Experiment/Weight data.csv", row.names = FALSE)
+# write.csv(total_grouped,"data/Experiment/Weight data.csv", row.names = FALSE)
 
 #reorder the dataframe based on training stages for plotting.
 corder <- c("Expert", "Late training", "Early training", "Pre-training")
@@ -384,25 +388,10 @@ p <- ggstatsplot::ggbetweenstats(
   x     = Assessment_stage,
   y     = delta_Weight,
   ggsignif.args = list(textsize = 1.5, tip_length = 0.01),
+  results.subtitle = FALSE,
   title = "A between-group comparison of delta weight")
-ggplot2::ggsave("delta weight comparison3.png", path="figure", dpi = 600)
+ggplot2::ggsave("delta weight comparison3.png", path="figure", width = 20,
+                height = 10, units = "cm", dpi = 600)
 
 ggstatsplot::extract_stats(p)
-
-p <- ggstatsplot::ggbetweenstats(
-  data  = total_grouped,
-  x     = assessment_stage,
-  y     = delta_Weight,
-  ggsignif.args = list(textsize = 1.5, tip_length = 0.01),
-  ggplot.component = list(scale_x_discrete(limits=c("Late training", "Early training", "Pre-training"))),
-  title = "A between-group comparison of delta weight"
-)
-ggplot2::ggsave("delta weight comparison2.png", path="figure", dpi = 600)
-
-
-aov_dw<-aov(delta_Weight~assessment_stage,data=total_grouped)
-summary(aov_dw)
-anova_stats(aov_dw)
-
-TukeyHSD(aov_dw)
 
