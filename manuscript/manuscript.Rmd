@@ -93,7 +93,7 @@ knitr::include_graphics(here::here("figure/Fig3.png"))
 
 In addition, visual inspection of the principle component scatter plot (**Figure** \@ref(fig:GeneralPCA1)) suggested that PC1 and PC2 might be negatively correlated within the Boxgrove and Expert groups. To test this, we conducted a series of exploratory plotting and statistical analyses of the PC values of three groups analyzed in our analysis (**Figure** \@ref(fig:PCcorrelation)). Across all three groups, a negative correlation has been displayed between the PC1 and PC2 values, although this trend is not statistically significant (r=-0.41, p= 0.24) in the expert group, probably because of its small sample size.
 
-```{r PCcorrelation, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="A scatter plot showing the correlation between PC1 and PC2 respectively in the groups of Boxgrove (left, n=326), expert (middle, n=10), and novice (right, n=132)."}
+```{r PCcorrelation, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="A scatter plot showing the correlation between PC1 and PC2 respectively in the groups of Boxgrove (left, n=326), expert (middle, n=10), and novice (right, n=132). The upper left area in each individual plot display statistical reporting from a frequentist perspective, including the student-t test statistics, p-value, Pearson correlation coefficient, confidence interval, and sample size. The lower right area in each individual plot display statistical reporting from a Bayesian perspective, including the natural logarithm of Bayes factor, posterior type and estimate, credible interval, and prior type and value. "}
 knitr::include_graphics(here::here("figure/Fig4.png"))
 ```
 
