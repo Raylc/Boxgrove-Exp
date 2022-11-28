@@ -8,8 +8,7 @@ Please open the Rproj file instead of the Rcode directly to make sure relative p
 The repository is organised into four main directories: code, data, figure, and manuscript.
 
 ### code
-* `Boxgrove_Iovita.R` ... This is the main R script generating the main results of this paper, including the compilation of Boxgrove morphonetric data and the comparative analysis of Boxgrove and experimental data.
-* `Boxgrove-Exp-code.R` ...This is the R script compiling the experimental data sheet.
+* `Boxgrove_Iovita.R` ... This is the R script generating the main results and figures of this paper, including the compilation of Boxgrove morphonetric data and the comparative analysis of Boxgrove and experimental data.
 
 ### data
 * `Boxgrove_Iovita`... This folder includes two subfolder. Subfolder `Sillhouettes` contains sillhouettes of the Boxgrove handaxe assemblage generated through Adobe Photoshop. Subfolder `Measurements` contains morphometric measurements of sillhouettes generated through ImageJ.
@@ -26,12 +25,11 @@ The repository is organised into four main directories: code, data, figure, and 
 * `Fig7.png` ... This is Fig.7 in the manuscript.
 * `Fig8.png` ... This is Fig.8 in the manuscript.
 
-
 ### manuscript
 * `apa.csl` ... This is the APA citation styleguide.
 * `bibliography.bib` ... This is the reference file.
-* `manuscript.pdf` ... This is the RMarkdown file for the manuscript.
-* `manuscript.Rmd` ... This is the RMarkdown file for the manuscript.
+* `manuscript.pdf` ... This is the pdf file of the manuscript.
+* `manuscript.Rmd` ... This is the RMarkdown file of the manuscript.
 
 ## Dependencies
 The code has been successfully executed on on CL's PC with the following R settings.

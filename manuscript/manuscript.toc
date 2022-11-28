@@ -7,9 +7,9 @@
 \contentsline {section}{\numberline {3}Results}{10}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Principal component analysis}{10}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Effects of training}{13}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Discussion}{14}{section.4}%
-\contentsline {section}{\numberline {5}Conclusions}{19}{section.5}%
+\contentsline {section}{\numberline {4}Discussion}{15}{section.4}%
+\contentsline {section}{\numberline {5}Conclusions}{20}{section.5}%
 \contentsline {section}{\numberline {6}CRediT authorship contribution statement}{20}{section.6}%
-\contentsline {section}{\numberline {7}Declaration of competing interest}{20}{section.7}%
-\contentsline {section}{\numberline {8}Acknowledgements}{20}{section.8}%
-\contentsline {section}{References}{20}{section*.11}%
+\contentsline {section}{\numberline {7}Declaration of competing interest}{21}{section.7}%
+\contentsline {section}{\numberline {8}Acknowledgements}{21}{section.8}%
+\contentsline {section}{References}{21}{section*.11}%
