@@ -16,7 +16,7 @@ The repository is organised into four main directories: code, data, figure, and 
 * `Table1.csv`... This csv file is the output file for Table 1 in the manuscript.
 
 ### figure
-* `Fig1.png` ... This is Fig.1 in the manuscript.
+* `Fig1.jpg` ... This is Fig.1 in the manuscript.
 * `Fig2.png` ... This is Fig.2 in the manuscript.
 * `Fig3.png` ... This is Fig.3 in the manuscript.
 * `Fig4.png` ... This is Fig.4 in the manuscript.
@@ -24,6 +24,7 @@ The repository is organised into four main directories: code, data, figure, and 
 * `Fig6.png` ... This is Fig.6 in the manuscript.
 * `Fig7.png` ... This is Fig.7 in the manuscript.
 * `Fig8.png` ... This is Fig.8 in the manuscript.
+* `Fig9.jpg` ... This is Fig.9 in the manuscript.
 
 ### manuscript
 * `apa.csl` ... This is the APA citation styleguide.
