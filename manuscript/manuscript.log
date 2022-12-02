@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.28)  30 NOV 2022 21:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.28)  1 DEC 2022 15:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -716,14 +716,14 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \openout3 = `manuscript.toc'.
 
 [2] [3] [4] [5]
-<C:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg, id=247, 606.5862pt x 984.0765pt>
+<C:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg, id=247, 474.8139pt x 781.9614pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg Graphic file (type jpg)
 <use C:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg  used on input
  line 168.
-(pdftex.def)             Requested size: 400.92198pt x 650.4235pt.
+(pdftex.def)             Requested size: 394.9576pt x 650.44768pt.
 [6]
-Overfull \vbox (19.49347pt too high) has occurred while \output is active []
+Overfull \vbox (19.51765pt too high) has occurred while \output is active []
 
 [7 <c:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg>] [8] [9]
 <C:/FilesVC/Boxgrove-Exp/figure/Fig2.png, id=312, 237.7683pt x 214.8828pt>
@@ -815,7 +815,7 @@ nts/type1/public/lm/lmsy10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/l
 m/lmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb><c:
 /texlive/2019/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb><c:/texlive/2019/t
 exmf-dist/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on manuscript.pdf (33 pages, 10276300 bytes).
+Output written on manuscript.pdf (33 pages, 5878359 bytes).
 PDF statistics:
  858 PDF objects out of 1000 (max. 8388607)
  791 compressed objects within 8 object streams
