@@ -1,5 +1,5 @@
 # Boxgrove-Exp
-Dissecting the interaction between skill level and mental template in Late Acheulean biface morphology: Archaeological and experimental insights (code, data, manuscript).
+Differential cultural reproduction of skill level and mental template in Late Acheulean biface morphology: Archaeological and experimental insights (code, data, manuscript).
 
 ## Getting Started
 Please open the Rproj file instead of the Rcode directly to make sure relative paths work!
