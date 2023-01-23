@@ -97,7 +97,7 @@ merge_shape_data_function<-function(plan_names,profile_names,plan_pathway,profil
 boxgrove_measurements<-merge_shape_data_function(plan_filenames,profile_filenames,"data/Boxgrove_Iovita/Measurements/plan","data/Boxgrove_Iovita/Measurements/profile")
 
 # Save the merged data as a csv file
-write.csv(boxgrove_measurements,"data/Boxgrove_Iovita/Measurements/merged.csv", row.names = FALSE)
+#write.csv(boxgrove_measurements,"data/Boxgrove_Iovita/Measurements/merged.csv", row.names = FALSE)
 
 ##############################
 # Open Read size/area function
@@ -183,12 +183,30 @@ bepca <-subset(boxgrove_experiment_data_shapes, select=-c(assessment,group))
 bepca <-prcomp(boxgrove_experiment_data_shapes[,-c(1:3)],  scale = TRUE)
 bepca1 <-prcomp(boxgrove_experiment_data_shapes[,-c(1:3)],  scale = FALSE)
 
-fviz_pca_ind(bepca1, habillage= boxgrove_experiment_data_shapes1$group, # color by groups
+pcaplot<-fviz_pca_ind(bepca1, habillage= boxgrove_experiment_data_shapes1$group, # color by groups
              addEllipses = TRUE, # Concentration ellipses
              ellipse.type = "convex",
              legend.title = "Groups",
              label="none")
 ggsave("General PCA1.png", path="figure", dpi = 600)
+
+fviz_pca_ind(bepca1)
+library(cowplot)
+
+pcaplot1<-ggdraw(pcaplot) + 
+  draw_image("figure/HPC1.PNG",
+             x = .68, y = 0.16, width = 0.12, height = 0.12)
+pcaplot2<-ggdraw(pcaplot1) + 
+  draw_image("figure/LPC1.PNG",
+             x = .03, y = 0.16, width = 0.12, height = 0.12)
+pcaplot3<-ggdraw(pcaplot2) + 
+  draw_image("figure/LPC2.PNG",
+             x = .3, y = 0.05, width = 0.12, height = 0.12)
+pcaplot4<-ggdraw(pcaplot3) + 
+  draw_image("figure/HPC2.PNG",
+             x = .3, y = 0.82, width = 0.12, height = 0.12)
+ggsave("General PCA1.png", width = 6.13, height = 4.76, path="figure", bg = "white", dpi = 600)
+
 
 # Cumulative scree plot
 fviz_eig(bepca1, addlabels=TRUE, hjust = -0.1)
@@ -219,7 +237,7 @@ eig.val <- get_eigenvalue(boxgrove_experiment_pca)
 res.var <- get_pca_var(boxgrove_experiment_pca)
 variable_loadings<-data.frame(res.var$coord)         # Coordinates
 variable_loadings_pc12 <- subset(variable_loadings, select=c("Dim.1", "Dim.2"))
-write.csv(variable_loadings_pc12,"data\\variable_loadings_pc12.csv", row.names = TRUE)
+#write.csv(variable_loadings_pc12,"data\\variable_loadings_pc12.csv", row.names = TRUE)
 
 
 
@@ -234,15 +252,15 @@ boxgrove_experiment_data_shapes$PC1<-Indiv_handaxe_scores$Dim.1
 boxgrove_experiment_data_shapes$PC2<-Indiv_handaxe_scores$Dim.2
 
 # plotting the pc1 and pc2 by assessment stage
-boxgrove_experiment_data_shapes2 <- boxgrove_experiment_data_shapes%>%
+#boxgrove_experiment_data_shapes2 <- boxgrove_experiment_data_shapes%>%
   filter(assessment != "10" & assessment != "11")
 
-ggplot(data = boxgrove_experiment_data_shapes2) +
+#ggplot(data = boxgrove_experiment_data_shapes2) +
   aes(x = as.numeric(assessment), y = PC1) +
   geom_point()+
   geom_smooth()
 
-ggplot(data = boxgrove_experiment_data_shapes2) +
+#ggplot(data = boxgrove_experiment_data_shapes2) +
   aes(x = as.numeric(assessment), y = PC2) +
   geom_point()+
   geom_smooth()
@@ -337,7 +355,7 @@ ggplot2::ggsave("PC2 comparison.png", path="figure", width = 20,
 ggstatsplot::extract_stats(p2)
 
 
-write.csv(boxgrove_experiment_data_shapes,"data/Experiment/boxgrove_experiment_data_shapes.csv", row.names = FALSE)
+#write.csv(boxgrove_experiment_data_shapes,"data/Experiment/boxgrove_experiment_data_shapes.csv", row.names = FALSE)
 
 # correlation between PC1 and PC2
 ggstatsplot::grouped_ggscatterstats(
@@ -350,6 +368,12 @@ ggstatsplot::grouped_ggscatterstats(
   ylab  = "PC2",
 )
 ggplot2::ggsave("PC correlation.png", width = 20, height = 10, path="figure", dpi = 600)
+
+# exploring the effect of training on the interaction of PC1 and PC2.
+boxgrove_experiment_data_shapes_novice<- boxgrove_experiment_data_shapes %>% filter(group == "novice")
+ggplot(boxgrove_experiment_data_shapes_novice, aes(PC1, PC2, color = as.factor(assessment_stage))) + 
+  geom_point()
+  
 
 
 

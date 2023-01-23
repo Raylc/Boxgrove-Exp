@@ -1,5 +1,5 @@
 ---
-title: 'Dissecting the interaction between skill level and mental templates in Late Acheulean handaxe morphology: Archaeological and experimental insights'
+title: 'Differential cultural reproduction of skill level and mental templates in Late Acheulean handaxe morphology: Archaeological and experimental insights'
 author:
 - Cheng Liu^[Department of Anthropology, Emory University, Atlanta, GA, USA; raylc1996@outlook.com]
 - Nada Khreisheh^[The Ancient Technology Centre, Cranborne, Dorset, UK; nada.khreisheh@dorsetcouncil.gov.uk]

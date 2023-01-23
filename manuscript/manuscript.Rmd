@@ -118,7 +118,7 @@ kableExtra::row_spec(0, bold = T)
 
 A closer look at the principal component scatter plot (**Figure** \@ref(fig:GeneralPCA1)) yields the clustering of different groups of handaxes. The majority of Boxgrove handaxes occupy an area featuring negative values of both PC1 and PC2. The expert group is similar to the Boxgrove group in PC1, while the former has a relatively higher PC2 value than the latter on average. The group of novice displays the highest ranges in both PC1 and PC2 values according to the scatter plot, however, it is rather pronounced that most handaxes made by novices have a positive PC1 value that is different from both the groups of Boxgrove and experts.
 
-```{r GeneralPCA1, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="A principal component scatter plot of handaxes from the groups of Boxgrove (red, n=326), expert (green, n=10), and novice (blue, n=132)."}
+```{r GeneralPCA1, echo=FALSE, out.width = '100%', fig.align='center', fig.cap="A principal component scatter plot of handaxes from the groups of Boxgrove (red, n=326), expert (green, n=10), and novice (blue, n=132). The four images illustrate simplified plan and profile morphology of handaxes displaying extreme PC values (e.g., The leftmost and uppermost handaxes respectively display the highest PC1 and PC2 value, and vice versa)."}
 knitr::include_graphics(here::here("figure/Fig4.png"))
 ```
 
