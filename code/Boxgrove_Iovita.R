@@ -419,3 +419,17 @@ ggplot2::ggsave("delta weight comparison3.png", path="figure", width = 20,
 
 ggstatsplot::extract_stats(p)
 
+
+# exploring the relationship between delta weight and PC1 and PC2
+deltaw <- read.csv("data/Experiment/Weight data.csv")
+shape <- read.csv("data/Experiment/boxgrove_experiment_data_shapes.csv")
+merged = merge(shape, deltaw, by.x=c('individual', 'assessment'), by.y=c('Knapper', 'Assessment'))
+merged1 <- filter(merged, group != "expert")
+
+
+ggplot(merged1, aes(delta_Weight, PC1, color = as.factor(assessment_stage))) + 
+  geom_point()+
+  geom_smooth(method=lm)
+ggplot(merged1, aes(delta_Weight, PC2, color = as.factor(assessment_stage))) + 
+  geom_point()+
+  geom_smooth(method=lm)

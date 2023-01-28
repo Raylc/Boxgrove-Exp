@@ -1,7 +1,7 @@
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Mental template}{3}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Skill level}{4}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Cultural reproduction}{5}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.2}Knapping skill}{5}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Cultural reproduction}{6}{subsection.1.3}%
 \contentsline {section}{\numberline {2}Materials and methods}{7}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Boxgrove handaxe collection}{7}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Experimental handaxe collection}{9}{subsection.2.2}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.28)  23 JAN 2023 17:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.28)  27 JAN 2023 23:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -716,85 +716,85 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \openout3 = `manuscript.toc'.
 
 [2] [3] [4] [5] [6]
-<C:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg, id=293, 474.8139pt x 781.9614pt>
+<C:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg, id=292, 474.8139pt x 781.9614pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg Graphic file (type jpg)
 <use C:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg  used on input
- line 179.
+ line 183.
 (pdftex.def)             Requested size: 394.9576pt x 650.44768pt.
 [7]
 Overfull \vbox (19.51765pt too high) has occurred while \output is active []
 
 [8 <c:/FilesVC/Boxgrove-Exp/figure/Fig1.jpg>] [9] [10]
-<C:/FilesVC/Boxgrove-Exp/figure/Fig2.png, id=365, 237.7683pt x 214.8828pt>
+<C:/FilesVC/Boxgrove-Exp/figure/Fig2.png, id=366, 237.7683pt x 214.8828pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/Fig2.png Graphic file (type png)
 <use C:/FilesVC/Boxgrove-Exp/figure/Fig2.png>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Fig2.png  used on input
- line 202.
+ line 206.
 (pdftex.def)             Requested size: 359.86237pt x 325.22516pt.
 [11 <c:/FilesVC/Boxgrove-Exp/figure/Fig2.png>]
-<C:/FilesVC/Boxgrove-Exp/figure/Fig3.png, id=399, 509.62395pt x 337.9827pt>
+<C:/FilesVC/Boxgrove-Exp/figure/Fig3.png, id=400, 509.62395pt x 337.9827pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/Fig3.png Graphic file (type png)
 <use C:/FilesVC/Boxgrove-Exp/figure/Fig3.png>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Fig3.png  used on input
- line 224.
+ line 228.
 (pdftex.def)             Requested size: 375.82495pt x 249.24718pt.
 [12] [13 <c:/FilesVC/Boxgrove-Exp/figure/Fig3.png>]
-<C:/FilesVC/Boxgrove-Exp/figure/Fig4.png, id=420, 443.0151pt x 344.0052pt>
+<C:/FilesVC/Boxgrove-Exp/figure/Fig4.png, id=421, 443.0151pt x 344.0052pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/Fig4.png Graphic file (type png)
 <use C:/FilesVC/Boxgrove-Exp/figure/Fig4.png>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Fig4.png  used on input
- line 269.
+ line 273.
 (pdftex.def)             Requested size: 443.01402pt x 344.00435pt.
 [14]
-<C:/FilesVC/Boxgrove-Exp/figure/Fig5.png, id=428, 1445.4pt x 722.7pt>
+<C:/FilesVC/Boxgrove-Exp/figure/Fig5.png, id=429, 1445.4pt x 722.7pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/Fig5.png Graphic file (type png)
 <use C:/FilesVC/Boxgrove-Exp/figure/Fig5.png>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Fig5.png  used on input
- line 280.
+ line 284.
 (pdftex.def)             Requested size: 469.74944pt x 234.87471pt.
 [15 <c:/FilesVC/Boxgrove-Exp/figure/Fig4.png (PNG copy)>] [16 <c:/FilesVC/Boxgr
 ove-Exp/figure/Fig5.png>]
-<C:/FilesVC/Boxgrove-Exp/figure/Fig6.png, id=449, 569.0058pt x 284.5029pt>
+<C:/FilesVC/Boxgrove-Exp/figure/Fig6.png, id=450, 569.0058pt x 284.5029pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/Fig6.png Graphic file (type png)
 <use C:/FilesVC/Boxgrove-Exp/figure/Fig6.png>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Fig6.png  used on input
- line 294.
+ line 298.
 (pdftex.def)             Requested size: 375.80545pt x 187.90273pt.
-<C:/FilesVC/Boxgrove-Exp/figure/Fig7.png, id=450, 569.0058pt x 284.5029pt>
+<C:/FilesVC/Boxgrove-Exp/figure/Fig7.png, id=451, 569.0058pt x 284.5029pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/Fig7.png Graphic file (type png)
 <use C:/FilesVC/Boxgrove-Exp/figure/Fig7.png>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Fig7.png  used on input
- line 303.
+ line 307.
 (pdftex.def)             Requested size: 375.80545pt x 187.90273pt.
-<C:/FilesVC/Boxgrove-Exp/figure/Fig8.png, id=451, 569.0058pt x 284.5029pt>
+<C:/FilesVC/Boxgrove-Exp/figure/Fig8.png, id=452, 569.0058pt x 284.5029pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/Fig8.png Graphic file (type png)
 <use C:/FilesVC/Boxgrove-Exp/figure/Fig8.png>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Fig8.png  used on input
- line 312.
+ line 316.
 (pdftex.def)             Requested size: 375.80545pt x 187.90273pt.
 [17 <c:/FilesVC/Boxgrove-Exp/figure/Fig6.png (PNG copy)> <c:/FilesVC/Boxgrove-E
 xp/figure/Fig7.png (PNG copy)>] [18 <c:/FilesVC/Boxgrove-Exp/figure/Fig8.png (P
 NG copy)>] [19] [20] [21]
-<C:/FilesVC/Boxgrove-Exp/figure/Fig9.jpg, id=539, 578.16pt x 396.2805pt>
+<C:/FilesVC/Boxgrove-Exp/figure/Fig9.jpg, id=543, 578.16pt x 396.2805pt>
 File: C:/FilesVC/Boxgrove-Exp/figure/Fig9.jpg Graphic file (type jpg)
 <use C:/FilesVC/Boxgrove-Exp/figure/Fig9.jpg>
 Package pdftex.def Info: C:/FilesVC/Boxgrove-Exp/figure/Fig9.jpg  used on input
- line 336.
+ line 342.
 (pdftex.def)             Requested size: 375.79955pt x 257.57927pt.
 [22 <c:/FilesVC/Boxgrove-Exp/figure/Fig9.jpg>] [23] [24] [25] [26] [27] [28] [2
 9] [30] [31] [32] [33] [34] [35]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 754.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 769.
 [36]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 754.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 769.
 (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 754.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 754.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 769.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 769.
  ) 
 Here is how much of TeX's memory you used:
- 17019 strings out of 492162
- 249708 string characters out of 6129062
- 406999 words of memory out of 5000000
+ 17022 strings out of 492162
+ 249785 string characters out of 6129062
+ 405906 words of memory out of 5000000
  20556 multiletter control sequences out of 15000+600000
  159136 words of font info for 258 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -812,10 +812,10 @@ fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public
 /lm/lmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb><
 c:/texlive/2019/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb><c:/texlive/2019
 /texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on manuscript.pdf (36 pages, 5899451 bytes).
+Output written on manuscript.pdf (36 pages, 5901700 bytes).
 PDF statistics:
  968 PDF objects out of 1000 (max. 8388607)
  898 compressed objects within 9 object streams
- 212 named destinations out of 1000 (max. 500000)
+ 215 named destinations out of 1000 (max. 500000)
  20670 words of extra memory for PDF output out of 20736 (max. 10000000)
 
