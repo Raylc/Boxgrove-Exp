@@ -4,15 +4,15 @@
 \contentsline {subsection}{\numberline {1.3}Cultural reproduction}{6}{subsection.1.3}%
 \contentsline {section}{\numberline {2}Materials and methods}{7}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Boxgrove handaxe collection}{7}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Experimental handaxe collection}{9}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Lithic analysis}{10}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Statistical analyses}{11}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Results}{12}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Principal component analysis}{12}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Effects of training}{16}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Discussion}{18}{section.4}%
-\contentsline {section}{\numberline {5}Conclusions}{23}{section.5}%
-\contentsline {section}{\numberline {6}CRediT authorship contribution statement}{24}{section.6}%
-\contentsline {section}{\numberline {7}Declaration of competing interest}{24}{section.7}%
-\contentsline {section}{\numberline {8}Acknowledgements}{24}{section.8}%
-\contentsline {section}{References}{25}{section*.12}%
+\contentsline {subsection}{\numberline {2.2}Experimental handaxe collection}{10}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Lithic analysis}{11}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Statistical analyses}{12}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Results}{13}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Principal component analysis}{13}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Effects of training}{17}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Discussion}{19}{section.4}%
+\contentsline {section}{\numberline {5}Conclusions}{24}{section.5}%
+\contentsline {section}{\numberline {6}CRediT authorship contribution statement}{25}{section.6}%
+\contentsline {section}{\numberline {7}Declaration of competing interest}{25}{section.7}%
+\contentsline {section}{\numberline {8}Acknowledgements}{25}{section.8}%
+\contentsline {section}{References}{26}{section*.12}%
