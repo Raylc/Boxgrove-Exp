@@ -11,7 +11,7 @@
 \contentsline {subsection}{\numberline {3.1}Principal component analysis}{13}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Effects of training}{17}{subsection.3.2}%
 \contentsline {section}{\numberline {4}Discussion}{19}{section.4}%
-\contentsline {section}{\numberline {5}Conclusions}{24}{section.5}%
+\contentsline {section}{\numberline {5}Conclusion}{24}{section.5}%
 \contentsline {section}{\numberline {6}CRediT authorship contribution statement}{25}{section.6}%
 \contentsline {section}{\numberline {7}Declaration of competing interest}{25}{section.7}%
 \contentsline {section}{\numberline {8}Acknowledgements}{25}{section.8}%
