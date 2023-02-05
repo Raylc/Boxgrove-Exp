@@ -188,7 +188,7 @@ pcaplot<-fviz_pca_ind(bepca1, habillage= boxgrove_experiment_data_shapes1$group,
              ellipse.type = "convex",
              legend.title = "Groups",
              label="none")
-ggsave("General PCA1.png", path="figure", dpi = 600)
+#ggsave("General PCA1.png", path="figure", dpi = 600)
 
 fviz_pca_ind(bepca1)
 library(cowplot)
@@ -338,6 +338,15 @@ p1<-ggstatsplot::ggbetweenstats(
   results.subtitle = FALSE,
   title = "A between-group comparison of PC1 values"
 )
+#highlight_bb <- boxgrove_experiment_data_shapes %>% 
+  #dplyr::filter(individual=="bb_1" | individual=="bb_2" | individual=="bb_3" | individual=="bb_4")
+#p11<-p1+  geom_point(data=highlight_bb, 
+             #aes(x=assessment_stage,y=PC1), 
+             #color='blue',
+             #size=3,
+             #alpha=0.7,
+             #shape=17)
+
 ggplot2::ggsave("PC1 comparison.png", path="figure", width = 20,
                 height = 10, units = "cm", dpi = 600)
 ggstatsplot::extract_stats(p1)
@@ -350,6 +359,12 @@ p2<-ggstatsplot::ggbetweenstats(
   results.subtitle = FALSE,
   title = "A between-group comparison of PC2 values"
 )
+#p22<-p2+  geom_point(data=highlight_bb, 
+                     #aes(x=assessment_stage,y=PC2), 
+                     #color='blue',
+                     #size=3,
+                     #alpha=0.7,
+                     #shape=17)
 ggplot2::ggsave("PC2 comparison.png", path="figure", width = 20,
                 height = 10, units = "cm", dpi = 600)
 ggstatsplot::extract_stats(p2)
