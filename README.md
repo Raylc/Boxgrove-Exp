@@ -1,5 +1,5 @@
 # Boxgrove-Exp
-Differential cultural reproduction of skill level and mental template in Late Acheulean biface morphology: Archaeological and experimental insights (code, data, manuscript).
+Differential effects of knapping skill acquisition on the cultural reproduction of Late Acheulean handaxe morphology: Archaeological and experimental insights, Journal of Archaeological Science: Reports (Accepted).
 
 ## Getting Started
 Please open the Rproj file instead of the Rcode directly to make sure relative paths work!
@@ -25,6 +25,10 @@ The repository is organised into four main directories: code, data, figure, and 
 * `Fig7.png` ... This is Fig.7 in the manuscript.
 * `Fig8.png` ... This is Fig.8 in the manuscript.
 * `Fig9.jpg` ... This is Fig.9 in the manuscript.
+* `HPC1.png` ... This is generated through Microsoft PowerPoint and integrated in Fig.4.
+* `HPC2.png` ... This is generated through Microsoft PowerPoint and integrated in Fig.4.
+* `LPC1.png` ... This is generated through Microsoft PowerPoint and integrated in Fig.4.
+* `LPC2.png` ... This is generated through Microsoft PowerPoint and integrated in Fig.4.
 
 ### manuscript
 * `apa.csl` ... This is the APA citation styleguide.
@@ -83,4 +87,4 @@ loaded via a namespace (and not attached):
 
 ## Help
 
-Please contact raylc1996@outlook.com if you have any questions realted to the code.
+Please contact raylc1996@outlook.com if you have any questions related to the code or data.
